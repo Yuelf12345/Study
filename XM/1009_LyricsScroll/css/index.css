@@ -1,0 +1,41 @@
+ * {
+    margin:0;
+    padding:0;
+}
+
+ body {
+    background: #000;
+    color:#666;
+    text-align:center;
+}
+
+ audio {
+    width:450px;
+    margin:30px 0;
+ }
+
+ .container {
+    height: 420px;
+    overflow: hidden;
+    border:2px solid #fff;
+ }
+
+.container ul {
+    border:2px solid #fff;
+    transform:0.2s;
+    list-style:none;
+    /* transform: translateY(-100px); */
+}
+
+.container li {
+    height: 30px;
+    /* border:2px solid #fff; */
+    line-height: 30px;
+    transition: 0.2s;
+}
+
+.container li.active{
+    color:#fff;
+    font-size: 20px;
+    transform: scale(1.2);
+}

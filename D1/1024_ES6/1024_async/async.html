@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background: skyblue;
+            position: absolute;
+            left:0
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <script>
+        /**
+         * js 同步阻塞 异步非阻塞
+         * 
+        */
+    {
+        console.log(3);     //1 主队列
+        function a(){
+            console.log(1);
+        }
+        a()                  //主队列
+        setTimeout(()=>{     //3 延时队列
+            console.log(4);
+        },1000);
+        Promise.resolve().then(function(){
+            console.log(3)
+        })                  //2 微队列
+        console.log(1);      //主队列
+    }
+    {
+        function asyncFn(cb) {
+            setTimeout(()=>{
+                console.log('async');
+                cb && cb();   
+            },2000)
+        }
+        asyncFn(function(){
+            //异步执行后执行的逻辑
+            console.log('someValue');
+        });
+        //异步执行完成之后 执行一些逻辑
+        //回调；callback
+        // console.log('someValue');
+    }
+    function move(ele,target,direction,cb){
+        let start = parseInt(window.getComputedStyle(ele,null)[direction]);
+        let num = (target - start) / Math.abs((target - start));
+        console.log(num);
+        let speed = 5 * num;
+        start += speed;
+        if(Math.abs((target - start))<5){
+            // console.log('运动完成');
+            cb && cb()
+        }else{
+            setTimeout(()=>{
+                ele.style[direction] = start +'px';
+                move(ele,target,direction,cb);
+            },10)
+        }
+    }
+    let box = document.querySelector('.box');
+    //回调地狱；函数作为参数层层嵌套；
+    move(box,300,'left',function(){
+        console.log('运动完成');
+        move(box,300,'top',function(){
+            console.log('运动完成');
+            move(box,0,'left',function(){
+                move(box,0,'top')
+            })
+        })
+    })
+   
+    </script> 
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Yase{
+            constructor(){
+                this.name = "亚瑟"
+            };
+            fire(){
+                console.log('释放技能')
+            }
+        }
+
+        //1.继承     
+        // class MyYase extends Yase{
+        //     fire(){
+        //         super.fire();
+        //         console.log('造成100伤害')
+        //     }
+        // }
+        // let yase = new MyYase()
+        // yase.fire();
+
+        //2.装饰者  
+        const hurt = function(){
+            console.log('造成100点伤害');
+        }
+
+        // const decorateFn = function(fn1,fn2){
+        //     return function(){
+        //         fn1();
+        //         fn2();
+        //     }
+        // }
+        Function.prototype.decorateFn = function(fn){
+            this();
+            fn();
+        }
+
+        let newyase = new Yase()
+        // let myfn = decorateFn(newyase.fire,hurt);
+        // myfn();
+        newyase.fire.decorateFn(hurt)
+    </script>
+</body>
+</html>

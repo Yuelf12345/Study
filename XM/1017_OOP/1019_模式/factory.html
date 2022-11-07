@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // function Factory(){
+        //     let obj = {};
+        //     obj.name = "张三";
+        //     return obj;
+        // }
+        // let zhangsan = Factory()
+        // console.log(zhangsan);
+
+
+        class Luban{
+            constructor(){
+                this.name = "鲁班"
+            }
+        }
+        class Yase{
+            constructor(){
+                this.name = "亚瑟"
+            }
+        }
+        
+        function Factory(type){
+            switch(type){
+                case 'yase':
+                    return new Yase();
+                    break;
+                case 'luban':
+                    return new Luban();
+                    break;
+                default:
+                    break;
+            }
+        }
+        let luban = Factory('luban');
+        console.log(luban);
+    </script>
+</body>
+</html>

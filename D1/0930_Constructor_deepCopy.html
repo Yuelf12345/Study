@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Constructor</title>
+</head>
+<body>
+    <h2>Constructor</h2>
+    <h2>deepCopy</h2>
+
+    <script>
+        function Dad(name,age){
+            this.name=name,
+            this.age = age,
+            this.money = function(){
+                console.log('10000')
+            }
+        }
+        Dad.prototype.fn = function(){
+            console.log('fn')
+        }
+
+        function Son(name,age){
+           Dad.call(this,name,age)      
+           this.sex = '男'
+        }
+
+        Son.prototype = Dad.prototype
+        //简单赋值，共用一个内存地址(传址)，数据相同
+        //复杂数据类型都会涉及到传址    Object(data function array)
+        //简单数据类型(传值)，不会相互影响  undefined null number string boolean Symbol
+        Son.prototype.fn = function(){
+            console.log('重写的fn');
+        }
+
+        let zd = new Dad()
+        let zs = new Son('张三',20)
+        zs.fn()
+        zd.fn()      //一个修改后另一个也会被修改
+
+    {   //deepCopy
+        let DadProto = {
+            name : '张二',
+            age:'46',
+            fn:function(){
+                console,log('Dad fn')
+            },
+            money:undefined,
+            arr:[],
+            obj:{}
+        }
+
+        let SonProto = JSON.parse(JSON.stringify(DadProto))
+        //JSON 虚拟化会丢失方法和undefined
+        let SonProto2 = deepCopy(DadProto)
+        SonProto.name = '张三';SonProto.age = '18';
+
+
+        console.log(DadProto)
+        console.log(SonProto)
+        console.log(SonProto2)
+
+        //封装deepCopy函数
+        function deepCopy(obj){
+            let newObj;                     //新开辟地址
+            if(Array.isArray(obj)){         //判断为数组
+                newObj = []; 
+                obj.forEach((item)=>{        //遍历后插入
+                    newObj.push(obj(item))      
+                })
+            }else if(typeof obj ==='object'){
+                newObj = {};
+                for(let key in obj){                       //for..in..会遍历原型和原型链上的属性和方法
+                    if(obj.hasOwnProperty(key)){           //判断自身的属性和方法
+                        if(typeof key === 'object'){
+                            newObj = deepCopy(obj[key])
+                        }else{
+                            newObj[key] = obj[key];
+                        }
+                    }
+                }
+            }
+            // match 字符串中查找
+            else if((typeof obj).match(/^(string|number|boolean)/)){    
+                return newObj
+            }
+            return newObj;
+            
+        }
+    }
+    
+    </script>
+</body>
+</html>

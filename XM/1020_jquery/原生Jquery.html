@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原生Jquery</title>
+    <script src="./jquery.js">
+    </script>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            background-color: skyblue;
+        }
+        #box{
+            width: 200px;
+            height: 200px;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body>
+    <button>按钮</button>
+    <!-- <div id="box"></div> -->
+    <div class="box">原生Jquery1</div>
+    <div class="box">原生Jquery2</div>
+
+    <script>
+        //js
+        // let box = document.querySelector('.box')
+        // box.addEventListener("click",function(){
+        //     console.log('JS')
+        // })
+        //jquery
+        $('.box').click(function(){
+            console.log('click事件');
+        })
+
+        // $(function(){
+        //     console.log("ready");
+        // })
+
+        // $(document.querySelectorAll('div')).click(function(){
+        //     console.log('对象点击');
+        // })
+        
+        // $('.box').eq(1).click(function(){
+        //     console.log('click事件');
+        // })
+
+        // $('div').on("mousedown mouseup",function(){
+        //     console.log('on----mouse事件');
+        // })
+
+        // let bgc = $('div').css("background-color")
+        // console.log(bgc);
+        // $('div').css('width','400px')
+        // $('div').css({width:'400px',height:'100px'})
+
+        // $('.box').eq(1).css('width','400px').end().click(function(){
+        //     console.log('click事件');
+        // })
+
+        // $.cssHooks['wh'] = {
+        //     get(ele){
+        //         console(ele)
+        //         return window.getComputedStyle(ele,null)['width']+" "+
+        //         window.getComputedStyle(ele,null)['height']
+        //     },
+        //     set(ele,newValue){
+        //         ele.style['width'] = newValue;
+        //         ele.style['height'] = newValue;
+        //     }
+        // }
+        // $('div').css('wh','400px')
+        // $('button').click(function(){
+        //     $('div').animate({
+        //         'width':200,
+        //         'height':200
+        //     })
+        // })
+
+
+        //原生JS只支持ID
+        // document.querySelector('button').addEventListener('click',function(){
+        //     document.getElementById("box").animate(
+        //         {
+        //             width:300+'px',
+        //             height:300+'px'
+        //         },
+        //         { 
+        //             duration: 1000,  
+        //         });
+        //     })
+    </script>
+</body>
+</html>

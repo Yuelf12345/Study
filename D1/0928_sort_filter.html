@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>sort_filter</title>
+</head>
+<body>
+	<h2>_sort_filter</h2>
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Age</th>
+				<th>Gender</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th>Tom</th>
+				<th>17</th>
+				<th>male</th>
+			</tr>
+		</tbody>
+	</table>
+	<div class="ageSort">
+		<a href="javascript:0;">Up</a>
+		<a href="javascript:0;">Down</a>
+		<a href="javascript:0;">default</a>
+	</div>
+	<div class="genderFilter">
+		<a href="javascript:0;">male</a>
+		<a href="javascript:0;">female</a>
+		<a href="javascript:0;">default</a>
+	</div>
+</body>
+<script>
+	let data = [
+		{
+			name:'Tom',
+			age:'19',
+			sex:'male'
+		},
+		{
+			name:'Jerry',
+			age:'19',
+			sex:'female'
+		},
+		{
+			name:'Spackle',
+			age:'21',
+			sex:'male'
+		},
+		{
+			name:'Tuff',
+			age:'8',
+			sex:'male'
+		},
+		{
+			name:'Butch',
+			age:'20',
+			sex:'male'
+		},
+		{
+			name:'Toots',
+			age:'18',
+			sex:'female'
+		}
+	]
+
+	let ageIndex = 2
+	let genderIndex = 2
+		//页面渲染
+		function render(data){
+			let tbody = document.querySelector('tbody')
+			tbody.innerHTML = ''
+			data.forEach(item=>{
+			let tr = document.createElement('tr')
+				
+				tr.innerHTML = `<th>${item.name}</th>
+								<th>${item.age}</th>
+								<th>${item.sex}</th>`
+				tbody.appendChild(tr)
+			})
+		}
+		render(data)
+
+		
+		//排序数组
+		let sortAge = [
+			data=>data.sort((r1,r2)=>r1.age-r2.age),
+			data=>data.sort((r1,r2)=>r2.age-r1.age),
+			data=>data
+		]
+		let ageEls = document.querySelectorAll('.ageSort a')
+		//遍历按钮
+		ageEls.forEach((item,key)=>{
+			item.onclick = function(){
+				//sort会改变原本数据
+				//深拷贝	JSON.parse(JSON.stringify())
+				let newData = sortAge[key](JSON.parse(JSON.stringify(data)));
+				ageIndex = key
+				let showData = filterGender[genderIndex](newData)
+				render(showData)
+			}
+		})
+		
+		//过滤数组
+		let filterGender = [
+			data=>data.filter(item=>item.sex === 'male'),
+			data=>data.filter(item=>item.sex === 'female'),
+			data=>data
+		]
+
+		let genderEls = document.querySelectorAll('.genderFilter a')
+		genderEls.forEach((item,key)=>{
+			item.onclick = function(){
+				let showData = filterGender[key](JSON.parse(JSON.stringify(data)));
+				genderIndex = key
+				let newData = sortAge[genderIndex](showData)
+				render(newData)
+			}
+		})
+		
+		
+</script>
+</html>

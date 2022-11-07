@@ -1,0 +1,63 @@
+
+  git init -初始化创建仓库
+      ·会创建出一个隐藏的.git文件夹,所有的操作历史将存入这里
+  git status-查看当前仓库所在目录的文件状态
+·      Untracked未追踪的
+  git add filename -使文件加入追踪
+      git commit -提交(并且附带:对此次操作的描述信息)
+  git log -查看提交记录
+      当你需要添加到暂存的文件过多的时候
+  git add . -添加所有改动文件及未追踪的文件
+  git commit -m '描述'-合并提交和描述,一步完成操作
+  git commit -a -m '描述'-从工作目录提交到暂存区后,直接提交
+
+  1.文件名乱码
+    git config --global core.quotepath false
+  ⒉.编辑描述乱码
+    -进入setting
+    -找到environment
+    -添加: set LANG=zh_CN.UTF-8
+  添加文件
+    mkdir departments employees setting salarys social attendances approvals permission
+    touch <file>
+    文件夹	mkdir <file>
+  删除文件
+  1.命令行删除
+    - git rm <file> -删除git区域中记录的文件,并且不保
+    留在工作目录中
+    - git rm -f(force)<file>-强制删除
+  2.手动删除工作目录中的文件
+    - git rm <file>
+  3.删除Git仓库中的,保留工作目录中的文件
+    - git rm --cache <file>
+  移动文件
+  1.重命名2移动文件
+    git mv file_from file_to
+    以上命令相当于以下三条
+    mv file_from file_to
+    git rm file_from
+    git add file_to
+  查看状态
+    git status打印文件状态(未追踪、已修改、已暂存)
+    git status -s = git status --short 简化文件状态打印内容
+    ?? 未追踪文件
+    A添加到暂存区的
+      M被修改但是未放入暂存区
+    MM修改后放入暂存区,并且又再次修改
+    M 被修改后放入暂存区
+  查看日志
+    git diff -查看当前文件的修改(主要看工作区文件)
+    git diff --<>查看暂存区和提交区域之间的差异
+    --staged
+    git log -查看日志
+    git log -p查看详细信息
+    git log -2查看最近的n条信息
+    git log --stat列出所有被修改的文件,以及简略的统计信息
+    git log --decorate --oneline  查看分支操作
+
+  提交对象:
+    Git保存的并不是文件的变化或者差异,而是一系列的不同时刻的文件快照。
+    提交操作时Git会保存一个提交对象,该对象中包含一个指向暂存”内容快照的指针、作者姓名、邮箱、父对象指针以及提交输入信息。
+    *首次提交的对象没有父对象
+    *普通的提交有一个父对象
+    *多个分支合并的有多个父对象

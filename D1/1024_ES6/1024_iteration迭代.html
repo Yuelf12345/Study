@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES6_iteration迭代</title>
+</head>
+<body>
+    <script>
+        /**
+         * for..in.. index索引
+         * for..of..  value值
+        */
+
+
+        let arr = ['a','b','c','d'];
+        // for(let index in arr){
+        //     console.log(index,arr[index])
+        // }
+
+        // for(let val of arr){
+        //     console.log(val);
+        // }
+        let obj = {
+            a:1,
+            b:2,
+            c:3
+        };
+        //方法 返回一个对象 返回值返回一个对象
+        obj[Symbol.iterator] = function(){
+            //迭代协议
+            // let values = Object.values(obj)
+            // console.log('values:',values);
+            let keys = Object.keys(obj)
+            let index = 0
+            return {
+                next(){
+                    // return {
+                    //     value:'1',  //循环过程中的值
+                    //     done:true,  //done 循环是否完成
+                    // }
+                    // if(index >= values.length){
+                    //     return {done:true}
+                    // }else{
+                    //     return {
+                    //         done:false,
+                    //         value:values[index++]
+                    //     }
+                    // }
+                    if(index >= keys.length){
+                        return {done:true}
+                    }else{
+                        return{
+                            done:false,
+                            value:{
+                                key:keys[index],
+                                value:obj[keys[index++]]
+                            }
+                        }
+                    }
+                }
+            }
+        };
+        // for(let index in obj){
+        //     console.log(index);
+        // }
+        for(let val of obj){
+            console.log(val.value);
+        }
+        console.log(obj);
+        // let values = obj[Symbol.iterator]()
+        // console.log(values.next());
+        // console.log(values.next());
+        // console.log(values.next());
+        // console.log(values.next());
+    </script>
+</body>
+</html>

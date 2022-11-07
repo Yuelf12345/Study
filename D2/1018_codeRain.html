@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            
+        }
+    </style>
+</head>
+<body>
+    <canvas id="bg"></canvas>
+    <script>
+        const cvs = document.getElementById('bg');
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        cvs.width = width;
+        cvs.height = height;
+        const ctx = cvs.getContext('2d') 
+        const columnWidth = 20;
+        const columnCount = Math.floor(window.innerWidth/columnWidth);
+        const columnNextIndexes = new Array(columnCount);
+        columnNextIndexes.fill(1);
+
+        function draw(){
+            ctx.fillStyle = 'rgba(240,240,240,0.1)';
+            ctx.fillRect(0,0,width,height);
+            const fz = 20;
+            ctx.fillStyle = getRandomColor();
+            ctx.font = `${fz}px "Roboto Mono"`;
+            for(let i=0;i<columnCount;i++){
+            const x = i * columnWidth;
+            const y = fz * columnNextIndexes[i];
+            ctx.fillText(getRandomChar(),x,y);
+                if(y > height && Math.random()>0.99){
+                    columnNextIndexes[i] = 0
+                }else{
+                    columnNextIndexes[i]++
+                }
+           }
+        }
+
+        function getRandomColor(){
+            const fontColors = [
+                '#22B5E5',
+                '#66FF77',
+                "#33b5e5",
+                "#0099cc",
+                "#aa66cc",
+                "#9933cc",
+                "#669900",
+                "#ffbb33",
+                "#ff8800",
+                "#ff4444",
+                "#cc0000"
+            ]
+            return fontColors[Math.floor(Math.random() * fontColors.length)]
+        }
+        function getRandomChar(){
+            const str = 'console.log("hello world")';
+            return str[Math.floor(Math.random()* str.length)];
+        }
+        draw();
+        setInterval(draw,40)
+    </script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>newObj</title>
+</head>
+<body>
+    <h2>newObj  new method</h2>
+</body>
+<script>
+    //1.字面量
+    let person1 = {
+        name : '小明',
+        age:'17',
+        hobby:function(){
+            console.log("唱")
+        }
+    } 
+    console.log(person1);
+
+    //2.Object()                                   
+    let person2 = new Object()
+    person2.name = '小李',
+    person2.age = '19',
+    person2.hobby = function(){
+        console.log('跳')
+    }
+    console.log(person2);
+
+    function Fun(name) {
+        this.name = name;
+    }
+    console.log("new Fun('小李')的类型：",typeof new Fun('小李')); // object
+    console.log("Fun的类型:",typeof Fun); // function
+    { //New 操作符
+        let fun = new Object();            
+        fun._proto_ = Fun.prototype        
+        var result =Fun.call(fun);      
+        //return result instanceof Object ? result : obj;    
+        //1.创建空对象
+        //2.空对象的_proto_ 和 构造函数 foo的prototype指向同一块内存地址
+        //3.(call方法改变this指向)让Fun中的this指向fun 
+        //4.判断func的返回值类型：如果是值类型，返回obj。如果是引用类型，就返回这个引用类型的对象
+    }
+    //3.Object.create()   属性方法放在原型_proto_上
+    let person3 = Object.create({
+        name:'小蔡',
+        age:'21',
+        hobby(){
+            console.log('rap')
+        }
+    })
+    console.log(person3);
+
+    //4.自定义构造函数    
+    // *   1.立刻创建一个新的对象
+    // *   2.将新建的对象设置为函数中this,在构造函数中可以使用this来引用新建的对象
+    // *   3.逐行执行函数中的代码
+    // *   4.将新建的对象作为返回值返回
+    function Person4(name,age,hobby){
+        this.name = name,
+        this.age = age,
+        this.hobby = function(){
+            console.log(hobby)
+        }
+    }
+    let P1 = new Person4('小王','21','music')
+    console.log(P1);
+    console.log(P1 instanceof Person4)
+
+
+    //5.工厂模式
+    function Person5(name,age,hobby){
+        let obj = new Object()
+        obj.name = name,
+        obj.age = age,
+        obj.hobby = function(){
+            console.log(hobby);
+        }
+        return obj
+    }
+    let P2 = Person5('小刘','21','个人')
+    let P3 = Person5('小张','20','练习生')
+    console.log(P2);
+    console.log(P3);
+
+    //6.原型
+    function person6(){}
+    person6.prototype.name = '小郑',
+    person6.prototype.age = '23',
+    person6.prototype.hobby = function(){
+        console.log('创作')
+    }
+    var p1 = new person6
+    console.log(p1);
+
+    //7.混合模式
+    function Person7(name,age){
+        this.name = name,
+        this.age = age
+    }
+    Person7.prototype.hobby = function(){
+        console.log(this.name+'关注')
+    }
+    let P4 = new Person7('小林','24')
+    console.log(P4);
+
+</script>
+</html>

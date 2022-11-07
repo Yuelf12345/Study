@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator</title>
+</head>
+<body>
+    <script>
+        function*fn(){
+            yield new Promise((resolve,reject)=>{
+                setTimeout(()=>{
+                    console.log(1);
+                    resolve('第一个yield执行完');
+                },500)
+            });
+            yield new Promise((resolve,reject)=>{
+                setTimeout(()=>{
+                    console.log(2);
+                    resolve('第二个yield执行完');
+                },500)
+            });
+            yield new Promise((resolve,reject)=>{
+                setTimeout(()=>{
+                    console.log(3);
+                    resolve('第三个yield执行完');
+                },500)
+            });
+        }
+        co(fn)
+        function co(fn){
+            let f = fn();
+            next();
+            function next(){
+                let result = f.next();
+                if(!result.done){
+                    //上一个异步执行完了，执行下一个
+                    result.value.then((info)=>{
+                        console.log(info);
+                        next()
+                    })
+                }
+               
+            }
+        }
+        // console.log(f);
+        // console.log(f.next());
+    </script>
+</body>
+</html>

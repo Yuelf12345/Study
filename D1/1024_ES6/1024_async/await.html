@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Await</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background: skyblue;
+            position: absolute;
+            left:0
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <script>
+        /**
+         * ES7同步写法 改写异步；基于promise
+        */
+       let p1 = function myp1(){
+        return new Promise((resolve)=>{
+            setTimeout(()=>{
+                resolve('p1')
+            },1000)
+        })
+       }
+       let p2 = function myp2(){
+        return new Promise((resolve)=>{
+            setTimeout(()=>{
+                resolve('p2')
+            },2000)
+        })
+       }
+    //链式调用 res是promise的value值
+    //    p1().then(res=>{
+    //         console.log(res);
+    //         return p2()
+    //    }).then((res)=>{
+    //     console.log(res);
+    //    }).catch((res)=>{
+    //     console.log(res);
+    //    })
+
+    // async await;await 后面是promise对象
+    async function asyncFn(){
+        try{
+            let res1 = await p1();
+            console.log(res1);
+            let res2 = await p2();
+            console.log(res2);
+        }catch(err){
+            console.log(err);
+        }
+    }
+    asyncFn()
+
+
+    {
+
+        function move(ele,target,direction){
+            return new Promise((resolve,reject)=>{
+                function fn(){
+                    let start = parseInt(window.getComputedStyle(ele,null)[direction]);
+                    let num = (target - start) / Math.abs((target - start));
+                    let speed = 5 * num;
+                    start += speed;
+                        if(Math.abs((target - start)) < 5){
+                            resolve('运动完成')
+                        }else{
+                            setTimeout(()=>{
+                                ele.style[direction] = start +'px';
+                                fn();
+                            },10)
+                        }
+                }
+                fn()
+            })
+        }
+        let box = document.querySelector('.box');
+        async function asyncFn(){
+            try{
+                await move(box,300,'left');
+                await move(box,300,'top');
+                await move(box,0,'left');
+                await move(box,0,'top');  
+                console.log('运动完成');
+            }catch(err){
+                console.log(err);
+            }
+        }
+        asyncFn()
+            //Promise   链式操作
+            // move(box,300,'left').then(res=>{
+            //     return move(box,300,'top');
+            // }).then(res=>{
+            //     return move(box,0,'left');
+            // }).then(res=>{
+            //     console.log('最后一个',res);
+            //     return move(box,0,'top');
+            // }).catch(err=>{
+            //     console.log(err);
+            // })
+            //回调地狱；函数作为参数层层嵌套；
+            // move(box,300,'left',function(){
+            //     console.log('运动完成');
+            //     move(box,300,'top',function(){
+            //         console.log('运动完成');
+            //         move(box,0,'left',function(){
+            //             move(box,0,'top')
+            //         })
+            //     })
+            // })
+}
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function fn1(){
+            console.log("fn1")
+        }
+        function fn2(){
+            console.log("fn2")
+        }
+
+        //添加事件
+        let handle = {}
+        function addEvent(eventName,fn){
+            if(typeof handle[eventName] === 'undefined'){
+                handle[eventName] = []
+            }
+             handle[eventName].push(fn)
+             console.log(handle[eventName]);
+        }
+        //执行事件
+        function trigger(eventName,...arg){
+            if(typeof event === undefined){
+                return ;
+            }
+            handle[eventName].forEach((item)=>{
+                item(...arg);
+            })
+        }
+        //移除事件
+        function removeEvent(eventName,fn){
+           if(!eventName in handle){
+            console.log("已移除");
+           }
+            handle[eventName].splice(eventName.indexOf(fn))
+            console.log(handle[eventName]);
+        }
+
+        addEvent('myEvent',fn1)
+        addEvent('myEvent',fn2)
+        removeEvent('myEvent',fn1)
+        trigger('myEvent')
+    </script>
+</body>
+</html>

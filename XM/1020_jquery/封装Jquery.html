@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>myJquery</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            background-color: aquamarine;
+        }
+    </style>
+    <script src="./myjquery.js"></script>
+</head>
+<body>
+    <button>按钮</button>
+    <div class="box">myJquery1</div>
+    <div class="box">myJquery2</div>
+    <script>
+        //click
+        // //类
+        $('.box').click(function(){
+            console.log('click触发了');
+        });
+        // //函数
+        // $(function(){
+        //     console.log("ready");
+        // })
+        // //对象
+        $(document.querySelectorAll('div')).click(function(){
+            console.log('对象点击');
+        })
+
+        //eq
+        // console.log($('.box').eq(1));
+        // $('.box').eq(1).click(function(){
+        //     console.log('click事件');
+        // })
+        //on
+        // $('div').on("mousedown mouseup",function(){
+        //     console.log('on----mouse事件');
+        // })
+
+
+        //css
+        //1 获取样式
+        // let bgc = $('div').css("background-color")
+        // console.log(bgc);
+        // //2 设置样式一
+        // $('div').css('width','400px')
+        // //3 设置样式二
+        // $('div').css({width:'400px',height:'100px'})
+
+        //end
+        // $('.box').eq(1).css('width','400px').end().click(function(){
+        //     console.log('click事件');
+        // })
+
+
+        //扩展自定义样式
+        // $.cssHooks['wh'] = {
+        //     get(ele){
+        //         console(ele)
+        //         return window.getComputedStyle(ele,null)['width']+" "+
+        //         window.getComputedStyle(ele,null)['height']
+        //     },
+        //     set(ele,newValue){
+        //         ele.style['width'] = newValue;
+        //         ele.style['height'] = newValue;
+        //     }
+        // }
+        // $('div').css('wh','400px')
+
+        //animate  封装一个函数，比较复杂
+        $('button').click(function(){
+            console.log(12);
+            $('div').animate({
+                'width':100,
+                'height':100
+            },2000,function(){
+                console.log('运动完成');
+            })
+        })
+
+       
+    </script>
+</body>
+</html>

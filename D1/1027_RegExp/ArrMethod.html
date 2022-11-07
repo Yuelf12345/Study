@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArrMethod</title>
+</head>
+<body>
+    <h2>数组方法</h2>
+    <h3><strong>改变原数组:</strong>push,pop,unshift,shift,reverse,sort,splice</h3>
+    <h3><strong>不改变原数组:</strong>concat,join,map,slice,filter,every,some,reduce,indexOf,includes</h3>
+</body>
+<script>
+    var arr = [1,2,3,4]
+    var arr1 = arr.push(3)
+    console.log(arr,"返还长度:",arr1);
+    var arr2 = arr.pop()
+    console.log(arr,"返还删除值:",arr2);
+    var arr3 = arr.unshift(0)
+    console.log(arr,"返还长度:",arr3);
+    var arr4 = arr.shift()
+    console.log(arr,"返还删除值:",arr4);
+
+    var arr5 = arr.reverse()
+    console.log(arr,"返还翻转后数组:",arr5)
+    var arr6 = arr.sort()
+    console.log(arr,"返还排序后数组:",arr6);
+    var arr7 = arr.splice(2,2,3,4)
+    console.log(arr,"返还删除数组:",arr7);
+
+
+    var arr8 = arr.concat([6,7,8])
+    console.log("返还拼接后数组:",arr8);
+    var arr9 = arr.join('*')
+    console.log("返还拼接后字符串:",arr9);
+    var arr10 = arr.map((a,b)=>a+b)
+    console.log("返还运行后数组:",arr10);
+    var arr11 = arr.slice(1,3)
+    console.log("返还截取后数组:",arr11);
+    var arr12 = arr.filter(a=>a>2)
+    console.log("返还过滤后数组:",arr12);
+    var arr13 = arr.every(a=>a>3)
+    var arr14 = arr.some(a=>a>3)
+    console.log("返还是否满足:",arr13,arr14);
+    var arr15 = arr.reduce((a,b)=>a+b)
+    console.log("返还运行结果:",arr15);
+
+    var arr16 = arr.indexOf(4)
+    console.log("返还查找索引:",arr16);
+    var arr17 = arr.includes(4)
+    console.log("返还值是否存在:",arr17);
+</script>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>song sheet</title>
+</head>
+<body>
+    <h2>_check</h2>
+    <section id="wrap">
+        <h2 class="title">音乐榜单</h2>
+        <ul id="list">
+            <li>
+                <input type="checkbox" />
+                <span>第一条信息</span>
+                <a href="javascript:0 ;" class="collect">收藏</a>
+                <a href="javascript:0 ;" class="cancelCollect">取消收藏</a>
+                <a href="javascript:0 ;" class="remove">删除</a>
+            </li>
+        </ul>
+        <footer class="footer">
+            <label for="">
+                <input type="checkbox" id="checkAll">
+                全选/全不选
+            </label>
+            <a href="javascript:0 ;" id="remove">删除</a>
+            <input type="text" id="newInfo" value="">
+            <a href="javascript:0 ;" id="add">添加</a>
+        </footer>
+    </section>
+</body>
+<script>
+{
+    let data = [
+        {
+            id:'1',
+            title:'花海-周杰伦',
+            checked:true,
+            collect:true,
+        },{
+            id:'2',
+            title:'演员-薛之谦',
+            checked:false,
+            collect:true,
+        },{
+            id:'3',
+            title:'暗号-周杰伦',
+            checked:true,
+            collect:false,
+        },{
+            id:'4',
+            title:'兰亭序-周杰伦',
+            checked:false,
+            collect:true,
+        },{
+            id:'5',
+            title:'东风破-周杰伦',
+            checked:true,
+            collect:false,
+        }
+    ]
+    
+    //数据渲染
+    function render(data){
+        let list = document.querySelector('#list');
+        list.innerHTML = '';
+        data.forEach((item,key)=>{
+            let li = document.createElement('li')
+            li.innerHTML=`<input type="checkbox" ${item.checked?'checked':''} />
+                        <span>${item.title}</span>
+                        ${!item.collect?
+                        '<a href="javascript:0 ;" class="collect">收藏</a>':
+                        '<a href="javascript:0 ;" class="cancelCollect">取消收藏</a>'}
+                        <a href="javascript:0 ;" class="remove">删除</a>`
+            list.appendChild(li)
+        })
+       
+        //是否全选
+        let isCheckAll = data.every((item)=>item.checked)
+        document.querySelector('#checkAll').checked = isCheckAll
+        addEvent();
+    }   
+    render(data) 
+
+    function addEvent() {
+        let lis = document.querySelectorAll('li')
+        lis.forEach((item,key)=>{
+            //取消收藏
+            let cancelCollect = item.querySelector('.cancelCollect')
+            cancelCollect && (cancelCollect.onclick = function(){
+                data[key].collect = false;
+                render(data)
+            })
+            //收藏
+            let collect = item.querySelector('.collect')
+            collect && (collect.onclick = function(){
+                data[key].collect = true;
+                render(data)
+            })
+
+            //删除
+            let remove = item.querySelector('.remove')
+            remove.onclick = function(){
+                data.splice(key,1)
+                render(data)
+            }
+
+            //选中
+            let inputEle = item.querySelector('input')
+            inputEle.onclick = function(){
+                data[key].checked = this.checked
+                render(data)
+            }
+        })
+    }
+    //全选/全不选
+    document.querySelector('#checkAll').onclick = function(){
+        data.forEach((item)=>{
+            item.checked = this.checked;
+        })
+        render(data)
+    }
+    //删除
+    document.querySelector('#remove').onclick = function(){
+        let newData=data.filter(item=>!item.checked)
+        render(newData)
+    }
+    //添加
+    document.querySelector('#add').onclick = function(){
+       let newInfo = document.querySelector('#newInfo').value
+       document.querySelector('#newInfo').value=''
+       data.push({id:data.length+1,title:newInfo})
+       render(data)
+    }
+    
+}
+</script>
+</html>

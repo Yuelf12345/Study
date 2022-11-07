@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>命名分组及零宽断言</title>
+</head>
+<body>
+    <h1>命名分组及零宽断言</h1>
+</body>
+<script>
+//命名分组
+    let str = '2022-11-01'
+    let reg = /(?<year>\d{4})-(?<mouth>\d{2})-(?<day>\d{2})/
+    console.log(reg.test(str));
+    console.log(str.match(reg))
+//零宽断言
+    let str1 = 'week1week2week3week4week5weekSun'
+    //肯定
+        let reg1 = /week(?=\d)/g
+    // 否定
+        let reg2 = /week(?!\d)/g
+    console.log(str1.replace(reg1,'星期'));
+    console.log(str1.replace(reg2,'星期'));
+
+    let str2 = '10px20px30pxipx'
+    let reg3 = /(?<=\d+)px/g    
+    let reg4 = /(?<!\d+)px/g    
+    console.log(str2.replace(reg3,'像素'));
+    console.log(str2.replace(reg4,'像素'));
+</script>
+</html>

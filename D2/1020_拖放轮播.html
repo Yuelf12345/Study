@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            position:relative;
+            /* overflow: hidden; */
+        }
+        ul{
+            list-style-type: none;
+            position: relative;
+            top: -50px;
+        }
+        ul li{
+            margin: 10px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 1px solid black;
+            float: left;
+        }
+        .center{
+            width:800px;
+            height: 200px;
+            background-color: aquamarine;
+            position:relative;
+        }
+        .page{
+            width: 198px;
+            height: 198px;
+            border: 1px ridge rebeccapurple;    
+            float: left;
+            text-align: center;
+            line-height: 198px;
+        }
+        .leftBtn{
+            position: relative;
+            float: left;
+            top: -100px;
+        }
+        .rightBtn{
+            position: relative;
+            float: left;
+            top: -100px;
+            right: -176px;
+        }
+    </style>
+</head>
+<body>
+   
+    <div id="box">
+        <div class="center" >
+            <div class="page">1</div>
+            <div class="page">2</div>
+            <div class="page">3</div>
+            <div class="page">4</div>
+        </div>
+        <a class="leftBtn">&lt;</a>
+        <a class="rightBtn">&gt;</a>
+        <ul class="count">
+            <li style="background-color:red"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <script>
+    {
+        let box = document.getElementById('box')
+        box.onmousedown = function(e){
+            var x = e.clientX - box.offsetLeft
+            var y = e.clientY - box.offsetTop
+            box.onmousemove = function(e){
+                var xx = e.clientX - x
+                var yy = e.clientY - y 
+                box.style.left = xx + "px";
+                box.style.top = yy+ "px";
+            }
+        }
+        box.onmouseup = function(){
+            box.onmousemove = ''
+        }
+    }
+    {
+        var center = document.querySelector('.center')
+        var leftBtn = document.querySelector('.leftBtn')
+        var rightBtn = document.querySelector('.rightBtn')
+        var liIndex = document.querySelectorAll('li')
+        var left = 0;
+        function move(){
+            if(left <= -800)[
+                left = 0
+            ]
+            var index = Math.floor(-left / 200);
+            liChange(index);
+            center.style.marginLeft = left +'px';
+            left -= 200;
+        }
+        
+        // setInterval(move,(left % 200 === 0)?1000:700)
+
+        function change(index){
+            let x = -(index * 200)
+            center.style.marginLeft = x +'px';
+            left = x
+        }
+        leftBtn.onclick = function(){
+            var index = Math.floor(-left / 200) -1;
+            if(index == -1){
+                index = 3
+            }
+            change(index)
+            liChange(index)
+        }
+        rightBtn.onclick = function(){
+            var index = Math.floor(-left / 200) +1;
+            if(index == 4){
+                index = 0
+            }
+            change(index)
+            liChange(index)
+        }
+        function liChange(index){
+            for(let i = 0 ;i < liIndex.length;i++){
+                liIndex[i].style.backgroundColor = '' 
+                liIndex[i].onclick = function(){
+                    center.style.marginLeft = -i*200 +'px';
+                    liChange(i)
+                }
+            }
+            if(index < liIndex.length){
+                    liIndex[index].style.backgroundColor = 'red'
+                }
+        }
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+
+  分支的操作:
+    创建分支:git branch 分支名称
+    *创建出来的分支,并不会改变我们当前所在的位置
+    切换分支: git checkout 分支名
+    *将HEAD指向切换的分支
+    *将工作目录恢复成当前分支的快照
+    简写命令: git checkout -b分支名
+
+  合并分支:
+    git merge目标分支-将目标分支的内容合并到当前分支
+    快速前移
+    当master和branch没有形成分叉,依旧是处于一条路径线,
+    当HEAD落后于所要合并的分支,将会形成快速前移
+    --no-ff 禁止快速前移(可以commit记录描述为合并操作)
+
+  分支冲突:
+  如何判断是否会引起冲突:
+    master和branch1处于同一条commit路径上(直接级祖先关系)
+    master 和branch1直接进行合并，不会引起冲突
+      1.分析master和branch1中的修改是否一致，如果一致合并将
+    会成为一次空合并(因为内容完全一致,没有合并的需要)
+      2.如果不一致，是否修改的同一个文件内容，如果是，产生冲突
+  解决分支冲突:
+    手动解决冲突部分
+    解决完成后再次提交，会以这次提交内容为准
+    删除分支:
+      合并完成后，分支就没有任何的后期用途了，这时候我们需要手动删
+      除分支，以防止自己词穷的时候出现重复命名分支的情况。
+        git branch -d分支名称
+      如果你的分支，从未合并:git branch -D分支名称
+        *HEAD所指向的分支，无法删除
+    取消合并:
+     git merge --abort
+
+  撤销大集合:
+    撤销上一次提交信息
+    git commit--amend 修改上一次提交信息
+    git restore --staged <file> 撤销对文件的暂存
+    git restore <file>
+    git reset HEAD^   撤销提交 ~N 撤销N次
+    git reset hash值    
+    重置工作目录，丢失暂存:
+        git reset --hard (尽量避免使用)
+    保留工作目录，与原分支差异将放到暂存区
+        git reset --soft
+    保留工作目录，并且清空暂存区
+        git reset --mixed(默认)
+    checkout的本质:
+    签出指定commit，只会改变HEAD指向，并不会影响分支指向
+
+    git reflog 查看提交记录  
+
+    存储:
+    当在一个分支中向暂存区添加内容，切换到另一个分支时，提交commit
+    会带上另一分支中的暂存内容。
+    git stash存储暂存区及工作目录修改文件 
+    git stash -u在上面的基础上带上未追踪文件
+    git stash list打印所有存储内容
+    git stash apply <stashName>将存储内容重新应用（默认不保留已暂存内
+    容)
+    git stash apply --index将原暂存依旧以暂存进行取出
+    git stash drop移除存储
+
+    rebase变基;
+        和merge同样都是进行合并操作的。
+        将一个分支的内容都移至另一个分支上
+    工作流程:
+            1.首先找到两个分支的共同祖先
+            2然后对比当前分支与祖先的历次提交，进行提取相应
+    修改，并保存为临时文件，将当前分支指向目标基底，最后将之前存为临时文件的修改依序应用
+
+
+    我们会发现，有些时候我就是不希望git管理文件夹中的某个文件，
+    每一次查看状态总是告诉我未追踪，很麻烦~
+    .gitignore文件，列出忽略文本模式
+
+    设置标签
+        git tag v1.0(默认在最新的commit提交上)查看标签
+        git tag
+        给指定commit添加标签:
+        git tag v0.1 1094adb
+        git tag -a v0.3 -m '' hash  描述
+        git tag -d v0.3     删除
+
+        git push提交远程仓库
+        git clone克隆项目到本地
+        git pull拉取
+
+    远程仓库克隆分支:
+      git checkout -b branch1 origin/branch1
+    **拉取下来的分支默认是master
+    删除远程仓库分支:
+      git push origin :branch
+    推送标签到远程仓库:
+      git push origin v1.0
+      git push origin --tags
+    删除远程仓库的标签:
+      git push origin :refs/tags/v1.0
+
+      使用SSH密钥
+        ssh-keygen -t rsa -C "zmouse@miaov.com" 生成ssh密钥
+        在github上找到settings，设置SSH
+        将生成的文件填到对应的位置（生成的信息给到仓库的管理者)
+
+
+       git remote add (仓库名) 仓库地址
+       git push -u  (仓库名)
+

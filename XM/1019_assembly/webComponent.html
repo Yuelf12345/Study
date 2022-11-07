@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Component</title>
+</head>
+<body>
+    <my-component></my-component>
+    <img src="#" is="my-img">
+    <script>
+        //自定义组件，自定义独立元素
+        console.dir(HTMLElement);
+        class MyComponent extends HTMLElement{
+            constructor(){
+                super();
+                console.log("this",this);
+                this.innerHTML = "<button>按钮</button>"
+            }
+        }
+        customElements.define("my-component",MyComponent)
+
+        //继承html元素
+        class MyImg extends HTMLImageElement{
+            constructor(){
+                super();
+                setTimeout(()=>{
+                    this.src = "https://gimg2.baidu.com/image_search/src=http%3A%2…sec=1668842082&t=6efbf8dfb592aade681fe88f30d90dcc"
+                },1000)
+            }
+        }
+        customElements.define("my-img",MyImg,{
+            extends:"img"
+        })
+    </script>
+</body>
+</html>

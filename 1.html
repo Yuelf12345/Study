@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            
+        }
+        body{
+            position: relative;
+        }
+        .form-control{
+            width: 400px;height: 30px;
+            text-align: left;
+            background-color:transparent;
+            /* opacity: 0.1; */
+            z-index: 9999;
+            position: absolute;
+        }
+        #myspan2{
+            position: absolute;
+            top: 0px;
+            z-index: 999;
+            background-color: aquamarine
+        }
+   
+       
+    </style>
+</head>
+<body>
+    
+    <input id="date" type="date" name="date" class="form-control" required onchange="dateChange()" ><br>
+    <span id="myspan2">222</span>
+
+</body>
+<script>
+
+    let dateInput = document.getElementById('date');
+    dateInput.valueAsDate = new Date();
+    function dateChange(){
+        document.querySelector('#myspan2').innerHTML =  DateTime(dateInput.valueAsDate)
+    }
+    function DateTime(date){ 
+        var year = date.getFullYear(); 
+        var month =(date.getMonth() + 1).toString(); 
+        var day = (date.getDate()).toString();  
+        if (month.length == 1) { 
+            month = "0" + month; 
+        } 
+        if (day.length == 1) { 
+            day = "0" + day; 
+        }
+        var dateTime = year + "-" + month + "-" + day;
+        return dateTime; 
+    }
+</script>
+</html>

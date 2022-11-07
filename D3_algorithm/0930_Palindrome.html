@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome</title>
+</head>
+<body>
+    <h2>Palindrome</h2>
+    <script>
+        //反数组
+        function palindrome(str) {
+            var  strLower = str.toLowerCase();  
+            var reg = /[\W\_]/g;                  
+            var strValue = strLower.replace(reg, "");                   
+            var strArr = strValue.split("");                  
+            var strArrReverse = strArr.reverse();                   
+            var strReverse = strArrReverse.join("");                  
+            
+            return strValue === strReverse;
+        }
+        console.log(palindrome("eye 你好！"));
+
+        //双指针
+        function isPalindrome(str){
+            //判断是否为字符或数字函数
+            function isValue(e){
+                return e>'a'&&e<'z'||e>'0'&&e<'9'
+            }
+            let i = 0;j = str.length-1;
+            while(j>=i){
+                let left = str[i].toLowerCase;
+                let right = str[j].toLowerCase;
+                if(!isValue(left)){
+                    i++;
+                }else if(!isValue(right)){
+                    j--;
+                }else if(left === right){
+                    i++;
+                    j--
+                }else{
+                    return false;
+                }
+            }
+            return true;
+        }
+        console.log(isPalindrome("eye 你好！"));
+
+        //最长回文
+        function longestPalindrome(s) {
+            // 定义返回的最长回文子串
+            let res = '';
+            // 开始循环每一个字符
+            for (let i = 0; i < s.length; i++) {
+                // 当回文子串为奇数时
+                test(i,i);
+                // 当回文子串为偶数时
+                test(i,i+1);
+            }
+            function test(m,n) {
+                // 首先不能越界，其次两个元素要相等，然后m左移，n右移进行比较
+                while (m >= 0 && n < s.length && s[m] === s[n]) {
+                    m--;
+                    n++;
+                }
+                // 比较当前回文字符串的长度是否比前面的回文字符串长度长，长则进行更新。
+                if (n - m - 1 > res.length) {
+                    res = s.slice(m+1,n);
+                }
+            }
+            return res;
+        };
+            console.log(longestPalindrome('bbdcdcbyb'));
+            {
+                 //中心扩展函数
+                function search(s,l,r){
+                    let left=l;
+                    let right=r;
+                    while(left>=0&&right<s.length&&s[left]===s[right]){
+                        left--;
+                        right++;
+                    }
+                    return right-left-1;
+                }
+                //本题主函数
+                function longestPalindrome(s){
+                    var start=end=0;
+                    for(let i=0;i<s.length;i++){
+                        let len1=search(s,i,i);
+                        let len2=search(s,i,i+1);
+                        let len=Math.max(len1,len2);
+                        if(len>end-start){
+                            start=i-Math.floor((len-1)/2);
+                            end=i+Math.floor((len/2));
+                        }
+                    }
+                    return s.slice(start,end+1);
+                };
+            }
+    </script>
+</body>
+</html>
