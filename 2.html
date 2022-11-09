@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,13 +8,33 @@
     <title>Document</title>
     <script src="node_modules\jquery\dist\jquery.js"></script>
 </head>
+
 <body>
-    <input type="date" onchange="dateChange()" class="ind">
+
 </body>
 <script>
-    function dateChange(){
-           let x =  $(".ind").val()
-           console.log(x);
-        }
+    const add = () => {
+        const cache = {};
+        return num => {
+            if (num in cache) {
+                return `From cache! ${cache[num]}`;
+            } else {
+                const result = num + 10;
+                cache[num] = result;
+                return `Calculated! ${result}`;
+            }
+        };
+    };
+
+    const addFunction = add();
+    console.log(addFunction(10));
+    console.log(addFunction(10));
+    console.log(addFunction(5 * 2));
 </script>
+
 </html>
+<!-- 
+    主  second  myPromise myPromise second
+    宏            
+    微        
+ -->
