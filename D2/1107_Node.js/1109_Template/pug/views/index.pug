@@ -1,0 +1,59 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Document
+        style.
+            .box1{
+                width:200px;
+                height:50px;
+                background-color:skyblue;
+            }
+    body 
+        h1 标题
+        div(class='box1') box1
+        .box1 box1
+            span span
+        #box2(style={width:'100px',height:'100px',background:'pink'}) box2
+        //- pug注释
+        // html注释
+
+        div 
+           | hello
+        - let str = '张三'
+        p #{str}
+        p #{data}
+
+        //- 循环
+        ul
+            each item,index in per
+                li #{index}姓名：#{item.name},年龄：#{item.age}
+        
+        - for(let i=0;i<4;i++)
+            span 循环#{i}
+        - let num = 2
+            case num 
+                when 1
+                    p 1
+                when 2
+                    p 2
+                default 
+                    p 其他
+
+        //- mixin
+        mixin myDiv
+            div 常用div
+        +myDiv
+        +myDiv
+        mixin pet(name,sex)
+            p name:#{name};sex:#{sex}
+        +pet('cat',0)
+        +pet('dog',1)
+
+        include common.pug
+
+        //- script
+        script(type="text/javaScript").
+            document.write('js');
