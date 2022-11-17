@@ -1,15 +1,12 @@
-const nunjucks = require('nunjucks');
-
-//载入模板引擎
-const tpl = new nunjucks.Environment(
-    new nunjucks.FileSystemLoader('views',{
-        watch:true,
-        noCache:true
-    })
-)
+//数据+模板
+const tpl = require('../libs/tpl.js');
+const itemsModel = require('../models/items.js');
 
 module.exports = {
     index:async ctx => {
-        ctx.body = tpl.render('index.html');
+        let goods = await itemsModel.getItem()
+        ctx.body = tpl.render('index.html',{
+            goods
+        });
     }
-}
+};

@@ -9,5 +9,16 @@
 </head>
 <body>
     <h3>首页</h3>
+    <ul>
+        {% for good in goods %}
+        <li>
+            <h6>{{good.title}}</h6>
+            <div>
+                {{good.sellNumber}}
+            </div>
+            <span>{{good.price}}</span>
+        </li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
