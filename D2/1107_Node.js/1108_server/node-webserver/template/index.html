@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../y/css/index.css">
+</head>
+<body>
+    <h1>标题</h1>
+    <h2>文本</h2>
+    <img src="../y/images/stz.jpg" alt="">
+    <hr>
+    <h4>{{tempTitle}}</h4>
+    <ul>
+        {% for d in data %}
+        <li>
+            {{d.title}}
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

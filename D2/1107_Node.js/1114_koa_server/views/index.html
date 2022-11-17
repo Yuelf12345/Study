@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .hot{
+            font-size: 9px;
+            color: #999;
+        }
+        ul{
+            list-style-type: square;
+            color: red;
+        }
+        a{
+            text-decoration:none;
+        }
+    </style>
+</head>
+<body>
+    <span>标题</span>
+    <ul>
+        {% for d in datas %}
+        <li>
+            <a href="/detail/{{d.id}}">{{d.title}}</a>
+            <div class="hot">
+                热度：{{d.hot}}
+            </div>
+        </li>
+        <hr>
+        {% endfor %}
+    </ul>
+    <br>
+
+    <div class="pages">
+        <a href="">&lt;</a>
+        {% for i in range(1,pages+1) %}
+        <a href="/?page={{i}}">{{i}}</a>
+        {% endfor %}
+        <a href="">&gt;</a>
+    </div>
+
+</body>
+</html>
