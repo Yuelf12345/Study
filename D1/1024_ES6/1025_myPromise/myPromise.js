@@ -21,7 +21,7 @@ class myPromise{
     _resolve(val){
         this.State = 'fulfilled';
         this.Value = val;
-        //执行 onResolved
+        //执行 onResolved   err:先调用再保存
         // this.resolveFn(val)
         const run=()=>{
             // this.resolveFn(val)

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>nunjucks</h1>
+    <h2>{{data}}</h2>
+    {# nunjucks注释 #}
+
+    {% if num>3 %}
+    <p>num大于3</p>
+    {% elseif num<3 %}
+    <p>num小于3</p>
+    {% else %}
+    <p>num等于3</p>
+    {% endif %}
+
+    <ul>
+        {% for item in arr %}
+        <li>姓名:{{item.name}},年龄:{{item.age}}</li>
+        {% endfor %}
+    </ul>
+
+    {{str | replace('World','世界') | capitalize}}
+
+    <!-- macro:宏标签 -->
+    {% macro pet(name='pig',sex) %}
+    <p>name:{{name}},sex:{{sex}}</p>
+    {% endmacro %}
+    {{pet('cat',0)}}
+    {{pet('dog',1)}}
+    {% include 'common.html' %}
+</body>
+</html>

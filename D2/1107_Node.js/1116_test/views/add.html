@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div >
+        <h2>添加商品</h2>
+        <form action="" method="post" enctype="multipart/form-data">
+            <div class="">
+                <label for="">
+                    <span>商品名称：</span>
+                    <input type="text" name="title">
+                </label>
+            </div>
+            <div class="">
+                <label for="">
+                    <span>商品类：</span>
+                    <select name="categories_id" id="">
+                        <option value="">选择</option>
+                        {% for c in categories %}
+                        <option value="{{c.id}}">{{c.class}}</option>
+                        {% endfor %}
+                    </select>
+                </label>
+            </div>
+            <div class="">
+                <label for="">
+                    <span>商品价格：</span>
+                    <input type="text" name="price">
+                </label>
+            </div>
+            <div class="">
+                <label for="">
+                    <span>商品图片：</span>
+                    <input type="file" name="cover">
+                </label>
+            </div>
+            <div class="">
+                <label for="">
+                    <button>确认</button>
+                </label>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
