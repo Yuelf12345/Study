@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        let box = document.querySelector('#box');
+
+        let xhr = new XMLHttpRequest();
+
+        xhr.onload = function(){
+            box.innerHTML = xhr.responseText;
+            // setTimeout(r(),1000);
+        };
+
+        function r(){
+            xhr.open('get','/getData',true);
+            xhr.send();
+        }
+        r();
+        
+    </script>
+</body>
+</html>

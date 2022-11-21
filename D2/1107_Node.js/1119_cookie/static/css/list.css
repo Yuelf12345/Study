@@ -1,0 +1,28 @@
+ul{
+    list-style-type: none;
+    height: 30px;
+}
+ul input{
+    float: left;
+}
+ul li{
+    float: left;
+}
+.grayBg{
+    background-color: gray;
+}
+.listContainer li:nth-child(4){
+    flex:1;
+}
+.btnController{
+    position: absolute;
+    left: 30%;
+    display: none;
+}
+.btnController img{
+    width: 30px;
+    margin-left: 10px;
+}
+a{
+    margin: 10px;
+}
