@@ -1,0 +1,27 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    link(rel="stylesheet", href="css/list.css")
+    script(src="js/list.js" type="text/javascript") 
+    title list
+  body
+    button.changeSkin 换肤
+    h1 热门歌曲
+    ul
+      li 歌曲
+      li 专辑
+      li 时长
+  each val,key in lists 
+    ul(class="listContainer "+(key%2==0?"grayBg":""))
+      li #{key+1}
+      li #{val.songName}
+      li #{val.album}
+      li #{val.time}
+      span(class="btnController" onclick="showDetail("+JSON.stringify(val)+")")
+        a(href='#')
+          img(src='images/play.png')
+        img(src='images/add.png')
+

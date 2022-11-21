@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>长轮询</h1>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAAFyAQAAAADAX2ykAAACjUlEQVR4nO2bTWrjQBCFvxoJsmxBDpCjtG4wRwo5Um4gHcU3aC0NLd4suts2yUzARFGioXohY/EtHjyqun5sE/ec+dddODjvvPPOO++88//irZ4eG5ceYDUbF6sPMzMbd9Tj/FZ8Xz7iBLA8AiEDy4BAwNJlAGwfPc5/Db/UCNXLAMwDwFLNN7N+bz3Ob8P3b74bYe2JAiOc7V339NP0O38fr2l5EPMA0qnHxm/W4/zn+Ba/QcACwGrE1z4z/869WMo1vJce57flq79zKZ86LKbHbAAWTw+y+Lrannqc35Yv/t5E6PyU0Tx05VEDez89zm/LI0kiJtAEaKIT0AlCRkqdNIUMUZKmn6bf+Tv4YuPZyuNy7Dl1+hv/1Xqc/zR/yc+5LxdueV3mGysQzta+7qHH+W35mp9rQpbq/AqQEtTEHSTPz4fkb/2NCVqSroYS1S5hub8H5Ju/IdcwvURyNTTU6svj95B8q5+Vay6u5XRXrK3ltNfPR+VvDZVuGyJJmWptqpz7ezT+kp9bE1xMliSlrlZV13fu7yF5Ka12LZ3rfpDVNC09103hT9Xv/Me8jXSCtjqy5wSUSgswG3y+cVC+zTeWAc1PGaqra0/Z/4azQUh76XF+W77dq6X/rRduHT2XxhgA738Pyrdaqp3aCdM2DRe7vT86JF/yc1smdJk4rUBIWEyDwfJYii6fPx+ZL21QglIrx0TZBNfQPT3Ixj31OL8Rf7P/bUOOayfs9+9/x9u49Ohl6GQ2wHV+9U16nN+cX83GcDZiWo14aj3x+F16nP8E//b3k5qfcg9L3fQLMsRpNa+vDsm/vWbLuylkypKwbBqS7xcOyr//h8KHx//f7bzzzjvvvPMb8H8A8uzJ3wYIQI0AAAAASUVORK5CYII=" alt="">
+    <div id="box"></div>
+    <script>
+        let box = document.querySelector('#box');
+
+        let xhr = new XMLHttpRequest();
+
+        xhr.onload = function(){
+            box.innerHTML = xhr.responseText;
+            setTimeout(r,1000);
+        };
+
+        function r(){
+            xhr.open('get','/getData',true);
+            xhr.send();
+        }
+        r();
+        
+    </script>
+</body>
+</html>
