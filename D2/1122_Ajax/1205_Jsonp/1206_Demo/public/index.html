@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/js/jsonp.js"></script>
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+    <h5>淘宝</h5>
+    <input type="text" class="myInput">
+    <div class="exchange"></div>
+</body>
+<script>
+    // console.log(ajax);
+
+    document.querySelector(".myInput").onblur = function(){
+        ajax({
+            //淘宝接口 https://suggest.taobao.com/sug?k=1&area=c2c&q="搜索值"&code=utf-8&ts=1670376825225&callback=__jp4
+            url:"https://suggest.taobao.com/sug",
+            
+            data:{
+                k:1,
+                area:"c2c",
+                q:this.value,
+                code:"utf-8",
+                ts:"1670376825225"
+            },
+            
+            dataType:"jsonp",
+            jsonp:"callback",
+            success:function(res){
+                console.log(res);
+            }
+        })
+    }
+</script>
+</html>

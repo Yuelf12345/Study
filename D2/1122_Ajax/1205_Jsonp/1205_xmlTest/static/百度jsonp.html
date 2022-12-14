@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jsonp.js"></script>
+</head>
+<body>
+    <h1>百度搜索</h1>
+    <input type="text" class="myInput">
+    <div class="exchange"></div>
+</body>
+<script>
+    // console.log(ajax);
+
+    document.querySelector(".myInput").onblur = function(){
+        ajax({
+            //百度接口
+            url:"https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su",
+            
+            dataType:"jsonp",
+            data:{
+                wd:this.value
+            },
+            jsonp:"cb",
+            success:function(res){
+                let data = res.s;
+                // console.log(data);
+                let html = "<ul>";
+                    data.forEach(v=>{
+                        html += "<li>" + v + "</li>"
+                    })
+                    html += "</ul>";
+                    document.querySelector(".exchange").innerHTML =  html;
+            }
+        })
+    }
+</script>
+</html>

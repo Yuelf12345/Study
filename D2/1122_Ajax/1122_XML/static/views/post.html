@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>post请求</h2>
+    <!-- <form action="" method="post" enctype="application/x-www-form-urlencoded"></form> -->
+    <button>发送Ajax</button>
+</body>
+<script>
+    //http 正文传递
+    let xhr = new XMLHttpRequest();
+    xhr.open('post','/post/1',true);
+    xhr.onload = function(){
+        let res = JSON.parse(xhr.responseText);
+        console.log(res);
+        //获取头信息
+        console.dir(xhr.getAllResponseHeaders);
+    }
+    // xhr.setRequestHeader('content-type','application/x-www-form-urlencoded')；
+    // xhr.setRequestHeader('content-type','multipart/form-data'); //二进制编码
+    xhr.setRequestHeader('content-type','application/json');
+    // let data = "username=王五&age=20";
+    let data = JSON.stringify({
+        username:"王五",
+        age:20
+    })
+
+    xhr.send(data);
+</script>
+</html>

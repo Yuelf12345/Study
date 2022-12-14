@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>连接</button><hr>
+    <textarea name="" id="textarea" cols="30" rows="10"></textarea>
+    <input type="text" id="content">
+    <button>发送</button>
+</body>
+<!--/socket.io/socket.io.js是require('io')后端io库 -->
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    // console.dir('socket',io)
+    //
+    let socket;
+    let textE = document.querySelector('#textarea');
+    let btns = document.querySelectorAll('button');
+    let content = document.querySelector('#content');
+
+    btns[0].onclick = function(){
+        
+        socket = io('/');
+
+        socket.on('connect',()=>{
+            btns[0].innerHTML = '连接成功';
+        });
+        //客户端监听
+        socket.on('hello',data=>{
+            renderData(data)
+        });
+
+        socket.on('message',data=>{
+            renderData(data)
+        });
+    }
+
+    btns[1].onclick = function(){
+        if(socket){
+            //发送message
+            socket.emit('message',content.value);
+            content.value = '';
+            content.focus();
+        }
+    }
+    function renderData(data){
+        textE.innerHTML += data + '\r\n';
+    }
+
+</script>
+</html>

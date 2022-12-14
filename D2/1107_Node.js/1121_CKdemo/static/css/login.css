@@ -1,0 +1,28 @@
+*{
+    margin:0;
+    padding:0;
+}
+body{
+    width:100%;
+    height:100%;
+}
+.box{
+    width: 300px;
+    height: 200px;
+    margin: 0 auto;
+    border: 1px solid black;
+}
+h1{
+    text-align: center;
+}
+.inputStyle{
+    margin:10px 20px;
+
+}
+.loginStyle{
+    width: 60px;
+    border: 1px solid black;
+    background:rgb(0, 255, 0);
+    position: relative;
+    margin: 25px 55px;
+}
