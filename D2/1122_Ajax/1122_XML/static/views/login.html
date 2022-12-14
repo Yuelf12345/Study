@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+    <div class="box">
+        <h1>登录</h1>
+        <form action="/checkUser" method="post">
+            姓名:<input type="text" name="username" class="inputStyle">
+            <div class="err">用户名错误</div>
+            密码:<input type="text" name="password" class="inputStyle">
+            <!-- <div class="err">密码错误</div> -->
+            <input type="submit" value="登录" class="loginStyle">
+            <input type="checkbox" name="remember" id="">记住我
+        </form>
+    </div>
+</body>
+<script>
+    //Ajax XMLHttpRequest
+    document.querySelector('.inputStyle').onblur = function(){
+        // console.log(this.value);
+        let xhr = new XMLHttpRequest();
+        xhr.open('get',`/checkUserName?username=${this.value}`,true);
+        xhr.onload = function(){
+            let obj = JSON.parse(xhr.responseText);
+            document.querySelector('.err').innerHTML = obj.info;
+            if(obj.static == 1){
+                document.querySelector('.err').style.color = 'green';
+            }else{
+                document.querySelector('.err').style.color = 'rad';
+            }
+        }
+        xhr.send();
+    }
+</script>
+</html>

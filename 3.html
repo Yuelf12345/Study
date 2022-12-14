@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let str = 'sample-item-1033-20221201-00000001'
+        let str1 = "sample-item-1033"
+
+        let reg = /(sample-item-1033)-[0-9]{4}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])-\d{8}/
+        console.log(reg.test(str));
+
+        let str1L = str1.length
+
+        let str2 = str.substring(0,str1L)
+        console.log(str2);
+
+        let str3 = str.substring
+
+    </script>
+</body>
+</html>

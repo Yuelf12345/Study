@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>返还XML格式</h2>
+    <button>发送Ajax</button>
+</body>
+<script>
+    document.querySelector('button').onclick = function(){
+        let xhr = new XMLHttpRequest();
+        xhr.open('get','/xml',true);
+        //自己设置xml类型
+        xhr.overrideMimeType("text/xml");
+        xhr.onload = function(){
+            console.log(xhr.responseXML);
+            let name = xhr.responseXML.getElementsByTagName("name")[0].innerHTML;
+            console.log(name);
+        }
+        xhr.send();
+    }
+</script>
+</html>

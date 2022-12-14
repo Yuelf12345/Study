@@ -4,5 +4,6 @@
         "middlewares",
         "perspiciatis",
         "prepage"
-    ]
+    ],
+    "git.ignoreLimitWarning": true
 }
