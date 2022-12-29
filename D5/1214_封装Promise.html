@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script type="text/javascript">
+    class MyPromise{
+        constructor(handle){
+            this.MyPrototype = 'Promise';
+            this.MyPromiseState = 'pending';
+            this.MyPromiseResult = undefined;
+
+            //2.then调用
+            this.resolveFn = null;
+            this.rejectFn = null;
+
+            //1.三种状态返回，里面没有this,
+            // handle(function(val){this.MyPromiseState = 'fulfilled',this.MyPromiseResult = val}.bind(this),
+            // function(val){this.MyPromiseState = 'rejected',this.MyPromiseResult = val}.bind(this));
+            handle(this.MyResolve.bind(this),this.MyReject.bind(this));
+        }
+        MyResolve(val){
+            this.MyPromiseState = 'fulfilled';
+            this.MyPromiseResult = val;
+
+            // this.resolveFn(val);
+        };
+        MyReject(val){
+            this.MyPromiseState = 'rejected';
+            this.MyPromiseResult = val;
+
+            // this.rejectFn(val);
+        };
+        then(onResolved,onRejected){
+            this.resolveFn = onResolved;
+            this.rejectFn = onRejected;
+            this.resolveQueue.push(onResolved)
+            this.rejectQueue.push(onRejected)
+
+        }
+    }
+    
+    
+    let p = new Promise((resolve,reject)=>{
+       resolve(123) 
+    });
+    p.then(res=>{console.log('p',res)});
+
+    let m = new MyPromise((resolve,reject)=>{
+        resolve(123) 
+    });
+    m.then(res=>{console.log('m',res)});
+
+    console.log('p',p);
+    console.log('m',m);
+</script>
+</html>
