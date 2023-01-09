@@ -1,3 +1,4 @@
+### https://blog.csdn.net/qq_45745964/article/details/122783927
 # webpack 是一个用于现代 JavaScript 应用程序的 静态模块打包工具。
 1. Webpack是一个模块打包工具，可以使用它管理项目中的模块依赖，并编译输出模块所需的静态文件。
 2. 它可以很好地管理、打包开发中所用到的HTML,CSS,JavaScript和静态文件（图片，字体）等，让开发更高效。

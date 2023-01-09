@@ -1,0 +1,49 @@
+{
+  "name": "koa-server",
+  "version": "1.2.2",
+  "author": {
+    "name": "KID.WuMeng",
+    "email": "kid.wumeng@gmail.com",
+    "url": "https://github.com/KID-WuMeng"
+  },
+  "description": "A HTTP Server for NodeJS and Koa",
+  "homepage": "https://github.com/KID-WuMeng/koa-server",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KID-WuMeng/koa-server.git"
+},
+  "scripts": {
+    "use": "node --harmony demo/use",
+    "get": "node --harmony demo/get",
+    "post": "node --harmony demo/post",
+    "put": "node --harmony demo/put",
+    "delete": "node --harmony demo/delete",
+    "all": "node --harmony demo/all",
+    "render": "node --harmony demo/render",
+    "base": "node --harmony demo/base",
+    "static": "node --harmony demo/static",
+    "cookie": "node --harmony demo/cookie",
+    "session": "node --harmony demo/session",
+    "file-io": "node --harmony demo/file-io",
+    "markdown": "node --harmony demo/markdown",
+    "mongo": "node --harmony demo/mongo",
+    "upload": "node --harmony demo/upload",
+    "mult-server": "node --harmony demo/mult-server"
+  },
+  "dependencies": {
+    "co-busboy": "^1.3.0",
+    "co-views": "^2.1.0",
+    "hogan.js": "^3.0.2",
+    "koa": "^1.0.0",
+    "koa-body-parser": "^1.1.2",
+    "koa-mongo": "^0.4.1",
+    "koa-override": "^1.0.0",
+    "koa-router": "^5.1.2",
+    "koa-session": "^3.3.1",
+    "koa-sleep": "^0.1.0",
+    "koa-static": "^1.4.9",
+    "marked": "^0.3.5",
+    "mongodb": "^2.0.42",
+    "thunkify": "^2.1.2"
+  }
+}
