@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>组件通信</title>
+    <script src="../src/vue (2).js"></script>
+</head>
+<body>
+    <div id="app">
+    </div>
+    <script>
+        //组件通信 
+        Vue.component('ComponentA',{
+            props:{},
+            data(){
+                return {
+                    count:0
+                }
+            },
+            methods:{
+                handleClick(){
+                    this.count++;
+                    this.$emit("change",this.count);
+                }
+            },
+            template:`<div>ComponentA
+                {{count}}
+                <button @click="handleClick">+</button>
+                    </div>`
+            
+        })
+        const vm = new Vue({
+            el:'#app',
+            template:`
+            <div>{{msg}}
+                <ComponentA @change="changeCount"></ComponentA>
+            </div>
+            `,
+            data:{
+                msg:'happy new year',
+            },
+            methods:{
+                changeCount(count){
+                    console.log("count",count);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

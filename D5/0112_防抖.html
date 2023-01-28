@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>防抖</title>
+</head>
+<body>
+    <input type="text" value="" id="ipt1">防抖
+    <input type="text" value="" id="ipt2" >输入
+</body>
+<script>
+    const ipt = document.querySelector('#ipt1');
+    const ipt2 = document.querySelector('#ipt2');
+        // ipt.addEventListener('oninput',function(){
+        //     console.log(this.value);
+        // })
+        function isInput(){
+            console.log(this.value);
+        }
+
+        function shake(fun,delay){
+            let timer;
+            return function(){
+                clearTimeout(timer);
+                timer = setTimeout(()=>{fun.apply(this)},delay)
+            }
+        }
+        ipt.oninput=shake(isInput,1000);
+
+
+        let sr;
+        ipt2.oninput =  function (){
+            if(sr){
+                console.log('输入中',this.value);
+            }
+        }
+        ipt2.compositionstart = function (){
+            sr = false;
+            console.log('开始');
+
+        }
+        ipt2.compositionend = function (){
+            sr = true;
+            console.log('结束')
+        }
+</script>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>子传父</title>
+    <script src="../src/vue (2).js"></script>
+</head>
+<body>
+    <div id="app">
+    </div>
+    <script>
+
+        Vue.component('ComponentA',{
+            props:["title"],
+            data(){
+                return {
+                    count:0
+                }
+            },
+            methods:{
+                handleClick(){
+                    this.count++;
+                    // vue 是单向数据流
+                    // this.title = this.title + this.count
+                    // this.$emit("updateTitle",this.title + this.count) 
+
+                    //sync
+                    // 发出 update: propName
+                    // 接受 :propName.sync:data
+                    this.$emit("update:childTitle",this.title + this.count)
+                }
+            },
+            template:`<div>ComponentA
+                {{count}}
+                {{title}}
+                <button @click="handleClick">+</button>
+                    </div>`
+            
+        })
+        const vm = new Vue({
+            el:'#app',
+            template:`
+            <div>{{msg}}
+                <ComponentA :title="parentTitle" :childTitle.sync="parentTitle"></ComponentA>
+            </div>
+            `,
+            data:{
+                msg:'happy new year',
+                parentTitle:'test - title'
+            },
+            // methods:{
+            //     handleUpdateTitle(val){
+            //         console.log(val);
+            //         this.title = val
+            //     }
+            // }
+        })
+    </script>
+</body>
+</html>

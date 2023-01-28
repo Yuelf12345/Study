@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义事件</title>
+    <script src="../src/vue (2).js"></script>
+</head>
+<body>
+    <div id="app">
+    </div>
+    <script>
+        //自定义事件
+
+        Vue.component('ComponentA',{
+            // 自定义
+            model:{
+                prop:"yue",
+                event:"change"
+            },
+            props:{
+                // value:"",
+                yue:"",
+            },
+            data(){
+                return {
+                    count:0
+                }
+            },
+            methods:{
+                handleClick(){
+                    this.count++;
+                    // this.$emit("input",this.count);
+                    this.$emit("change",this.count);
+                }
+            },
+            template:`<div>ComponentA
+                {{count}}
+                {{yue}}
+                <button @click="handleClick">+</button>
+                    </div>`
+            
+        })
+        const vm = new Vue({
+            el:'#app',
+            template:`
+            <div>{{msg}}
+                {{count}}
+                <ComponentA v-model="count"></ComponentA>
+            </div>
+            `,
+            data:{
+                msg:'happy new year',
+                count:0
+            }
+        })
+    </script>
+</body>
+</html>

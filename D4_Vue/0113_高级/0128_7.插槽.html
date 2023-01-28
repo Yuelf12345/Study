@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>插槽</title>
+    <script src="../src/vue (2).js"></script>
+</head>
+<body>
+    <div id="app">
+    </div>
+    <script>
+
+        Vue.component('ComponentA',{
+            props:{},
+            data(){
+                return {
+                    count:0,
+                    childTitle:'childTitle'
+                }
+            },
+            methods:{
+                handleClick(){
+                    this.count++;
+                }
+            },
+            template:`<div>ComponentA
+                <p>
+                    <slot name="header" :count="count" title="childTitle">main</slot>
+                </p>
+                <p>
+                    <slot></slot>
+                </p>
+                <p>
+                    <slot name="footer">main</slot>
+                </p>
+                <button @click="handleClick">+</button>
+                </div>`
+            
+        })
+        const vm = new Vue({
+            el:'#app',
+            template:`
+            <div>{{msg}}
+                <ComponentA>
+                    {{parentCount}}
+                    <template v-slot:header="data">
+                        <p>{{data.count}} - {{data.title}}</p>
+                        header - slot</template>
+                    123456
+                    <template v-slot:footer>footer - slot</template>
+                </ComponentA>
+            </div>
+            `,
+            data:{
+                msg:'happy new year',
+                parentCount:'parentCount'
+            }
+        });
+    </script>
+</body>
+</html>

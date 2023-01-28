@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>组件传值</title>
+    <script src="../src/vue (2).js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- {{msg}}
+        <component-a></component-a> -->
+    </div>
+    <script>
+        // function name(title:string="title") {
+            
+        // }
+        
+        //组件 全局注册
+        Vue.component('ComponentA',{
+            props:{
+                title:{
+                    type:String,        //传值类型
+                    default:'title -A', //默认值
+                    required:true       //必须传值
+                },
+                student:{
+                    type:Object,
+                    validator(val){     //验证器
+                        console.log(val);
+                        return val.name === "xiaoming";
+                        return true;
+                    }
+                }
+                
+            },
+            data(){
+                return {
+                    count:0
+                }
+            },
+            methods:{
+                handleClick(){
+                    return this.count++
+                }
+            },
+            template:`<div>ComponentA
+                {{count}}
+                {{title}}
+                <button @click="handleClick">+</button>
+                    </div>`
+            
+        })
+        const vm = new Vue({
+            el:'#app',
+            template:`
+            <div>{{msg}}
+                <ComponentA title="123" :student="{name:'xiaoming'}""></ComponentA>
+                <ComponentA title="123"></ComponentA>
+            </div>
+            `,
+            data:{
+                msg:'happy new year',
+            }
+        })
+    </script>
+</body>
+</html>

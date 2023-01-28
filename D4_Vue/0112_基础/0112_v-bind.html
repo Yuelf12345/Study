@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../src/vue (2).js"></script>
+    <style>
+        .isred{
+            color:blue,
+        }
+        /* input::content */
+    </style>
+</head>
+<body>
+    <div id="app">
+        <span v-if="num%2 !== 0":class="{'isred':isRed}">{{num}}</span>
+        <span :style="{color:'red',fontSize:'50px'}">{{num}}</span>
+        <button @click="add">++</button>
+        <p>
+            <label for="rangex">Range</label>
+            <input type="range" min="0" max="100" v-model="num" step="3"/>
+          </p>
+          <input type="" min="0" max="100" list="numbersxx"/>
+          <datalist id="numbersxx">
+            <option>cherry</option>
+            <option>banana</option>
+            <option>mango</option>
+            <option>orange</option>
+            <option>blueberry</option>
+          </datalist>
+    </div>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data(){
+                return {
+                    num:1,
+                    isRed:true
+                }
+            },
+            methods:{
+                add:function(){
+                    this.num++
+                }
+            }
+        })
+    </script>
+</body>
+</html>
