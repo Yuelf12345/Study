@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>el挂载</title>
+    <script src="../src/vue (2).js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{msg}}</p>
+    </div>
+</body>
+<script>
+    // const vm = new Vue({
+    //     el:'#app',
+    //     data:{
+    //         msg:'el挂载'
+    //     }
+    // })
+    const vm = new Vue({
+        data:{
+            msg:'el挂载'
+        }
+    });
+    // vm.$mount(DOM选择器)：手动挂载实例的关联元素
+    // vm.$destroy():销毁Vue实例,数据还在
+    // vm.$nextTick(callback):在DOM更新完成后再执行callback函数，一般在修改数据之后使用该方法，以便获取更新后的DOM元素。
+    
+    vm.$mount('#app')
+    vm.$destroy()
+
+</script>
+</html>

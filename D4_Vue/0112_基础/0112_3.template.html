@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模板</title>
+    <script src="../src/vue (2).js"></script>
+</head>
+<body>
+    <div id="app">
+        <slot name="name">777</slot>
+        <h-w></h-w>
+        <!-- <template></template> -->
+        <template id="tp2"><h1>模板2</h1> 456<slot name="name">123</slot></template>
+    </div>
+    <!-- <script type="x-template" id="tp3"><h1>模板3</h1></script> -->
+</body>
+<script>
+    // Vue.component('hW',{
+    //     template:`<h1>模板1</h1>`
+    // })
+    const vm = new Vue({
+        el:'#app',
+        // template:`<h1>模板1</h1>`
+        // template:'#tp3'
+        components:{
+            'hW':{
+                template:'tp2'
+            }
+        }
+    })
+</script>
+</html>

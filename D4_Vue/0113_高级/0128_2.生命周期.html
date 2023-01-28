@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生命周期</title>
+    <script src="../src/vue (2).js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- {{msg}}
+        <component-a></component-a> -->
+    </div>
+    <script>
+        //组件 局部注册
+        const ComponentB = {
+            //** 组件必须有个根元素包裹 data写成函数
+            template:`<div>ComponentB</div>`
+        }
+        //组件 全局注册
+        Vue.component('ComponentA',{
+            components:{
+                ComponentB
+            },
+            data(){
+                return {
+                    count:0
+                }
+            },
+            beforeCreate(){
+                console.log('beforeCreate...a')
+            },
+            created(){
+                console.log('Create...a')
+            },
+            beforeMount(){
+                console.log('beforeMounted...a')
+            },
+            mounted(){  
+                console.log('mounted...a')
+            },
+            methods:{
+                handleClick(){
+                    return this.count++
+                }
+            },
+            template:`<div>ComponentA
+                {{count}}
+                <button @click="handleClick">+</button>
+                    <ComponentB></ComponentB>
+                    </div>`
+            
+        })
+        const vm = new Vue({
+            el:'#app',
+            template:`
+            <div>{{msg}}
+                <ComponentA v-if=show></ComponentA>
+            </div>
+            `,
+            data:{
+                msg:'happy new year',
+                show:true
+            },
+            beforeCreate(){
+                console.log('beforeCreate...')
+            },
+            created(){
+                console.log('Create...')
+            },
+            beforeMount(){
+                console.log('beforeMounted...')
+            },
+            //子组件优先初始化
+            mounted(){
+                console.log('mounted...')
+            },
+            beforeUpdate(){
+                console.log('beforeUpdate...')
+            },
+            updated(){
+                console.log('update...')
+            },
+            beforeDestroy(){
+                console.log('beforeDestroy...')
+            },
+            destroyed(){
+                console.log('destroyed...')
+            }
+        })
+    </script>
+</body>
+</html>

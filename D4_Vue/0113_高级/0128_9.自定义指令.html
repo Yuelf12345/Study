@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义指令</title>
+    <script src="../src/vue (2).js"></script>
+</head>
+<body>
+    <div id="app">
+    </div>
+    <script>
+        // v-show 
+        // v-focus
+        Vue.directive("focus",{
+            bind(el,binding){
+                console.log(el);
+                console.log(binding);
+                console.log("bind");
+            },
+            inserted(el){
+                el.focus()
+                console.log("inserted");
+            }
+        })
+
+
+        Vue.component('ComponentA',{
+            data(){
+                return {
+                    count:0
+                }
+            },
+            methods:{
+                handleClick(){
+                    this.count++
+                }
+            },
+            template:`<div>ComponentA
+                    <input type="text" v-focus="123 + 123"></input>
+                    </div>`,
+        });
+
+        const vm = new Vue({
+            el:'#app',
+            template:`
+            <div>{{msg}}
+                <ComponentA></ComponentA>
+            </div>
+            `,
+            data:{
+                msg:'happy new year',
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>data</title>
+    <script src="../src/vue (2).js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{msg}}</p>
+    </div>
+</body>
+<script>
+    //对象，数据污染
+    function Component(){this.datas = this.data};
+    Component.prototype.data={
+        msg:10
+    };
+    //函数，返回对象内存地址不同
+    // function Component(){this.datas = this.data()};
+    // Component.prototype.data=function(){
+    //     return {msg:10}
+    // };
+    const component1 = new Component();
+    const component2 = new Component();
+    component2.datas.msg = 20
+    console.log('component1:',component1);
+    console.log('component2:',component2);
+
+    const vm = new Vue({
+        el:'#app',
+        // data:{
+        //     msg:'对象返回msg数据'
+        // }
+        data(){
+            return {
+            msg:'函数返回msg数据'
+            }
+        }
+    })
+</script>
+</html>

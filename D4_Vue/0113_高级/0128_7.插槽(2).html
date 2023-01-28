@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>插槽</title>
+    <script src="../src/vue (2).js"></script>
+</head>
+<body>
+    <div id="app">
+    </div>
+    <script>
+
+        Vue.component('TodoList',{
+            props:["list"],
+            data(){
+                return {
+                    count:0,
+                    childTitle:'childTitle'
+                }
+            },
+            methods:{
+                handleClick(){
+                    this.count++;
+                }
+            },
+            template:`<div>
+                        <ul>
+                            <li v-for="item in list">
+                                <slot :item="item"></slot>
+                            </li>
+                            
+                        </ul>
+                    </div>`
+            
+        })
+        const vm = new Vue({
+            el:'#app',
+            template:`
+            <div>{{msg}}
+                <TodoList :list="list">
+                    <template v-slot="{item}">
+                        <span v-if="item.age > 19">*</span>
+                        {{item.name}} - {{item.age}}
+                    </template>
+                </TodoList>
+            </div>
+            `,
+            data:{
+                msg:'happy new year',
+                parentCount:'parentCount',
+                list:[
+                    {name:'xi',age:18},
+                    {name:'yue',age:20},
+                    {name:'zha',age:19},
+                ]
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>混入</title>
+    <script src="../src/vue (2).js"></script>
+</head>
+<body>
+    <div id="app">
+    </div>
+    <script>
+        //mixin  vue3移除(命名不清晰，找不到来源)
+        const mixinC = {
+            mounted(){
+                console.log("mixinC");
+            },
+            methods:{
+                name(){
+                    console.log('mixin - c');
+                }
+            }
+        };
+
+        const mixinA = {
+            mixins:[mixinC],
+            mounted(){
+                console.log("完成");
+            },
+            methods:{
+                name(){
+                    console.log('mixin - a');
+                }
+            }
+        };
+       
+
+        Vue.component('ComponentA',{
+            mixins:[mixinA],
+            data(){
+                return {
+                    count:0
+                }
+            },
+            methods:{
+                handleClick(){
+                    this.count++,
+                    this.name()
+                }
+            },
+            template:`<div>ComponentA
+                {{count}}
+                <button @click="handleClick">+</button>
+                    </div>`,
+        });
+        Vue.component('ComponentB',{
+            mixins:[mixinA],
+            data(){
+                return {
+                    count:0
+                }
+            },
+            methods:{
+                handleClick(){
+                    return this.count++
+                }
+            },
+            template:`<div>ComponentB
+                {{count}}
+                <button @click="handleClick">+</button>
+                    </div>`,
+        });
+
+
+        const vm = new Vue({
+            el:'#app',
+            template:`
+            <div>{{msg}}
+                <ComponentA></ComponentA>
+                <ComponentB></ComponentB>
+            </div>
+            `,
+            data:{
+                msg:'happy new year',
+            }
+        })
+    </script>
+</body>
+</html>

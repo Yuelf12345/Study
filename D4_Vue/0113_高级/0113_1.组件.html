@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>组件</title>
+    <script src="../src/vue (2).js"></script>
+</head>
+<body>
+    <div id="app">
+        <hello-world></hello-world>
+        <hello-world></hello-world>
+        <hello-world></hello-world>
+    </div>
+    <div id="app2">
+        <component-a></component-a>
+        <component-b></component-b>
+        <component-a></component-a>
+    </div>
+</body>
+    <script>
+        //全局组件  data必须为函数，写成函数后每次返回对象都会分配新的内存地址
+        Vue.component('hello-world',{
+            data(){
+                return {
+                    num : 0
+                }
+            },
+            template:`<button @click="num++"> 点击{{num}}</button>`
+        })
+        new Vue({el:'#app'})
+
+        //局部组件 
+        var ComponentA = {template:'<p>A</p>'};
+        var ComponentB = {template:'<p>B</p>'};
+        var ComponentC = {template:'<p>C</p>'};
+        new Vue({
+            el: '#app2',
+            components: {
+                'component-a': ComponentA,
+                'component-b': ComponentB
+            }
+            })
+    </script>
+</html>
