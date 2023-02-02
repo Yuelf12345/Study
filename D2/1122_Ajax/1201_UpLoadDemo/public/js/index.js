@@ -34,7 +34,7 @@ function loadPhotos(){
                 let img = new Image();
                 img.src = v.url;
                 document.querySelector('.content-list').appendChild(img)
-                console.log(img.src);
+                // console.log(img.src);
             })
         }
     })
@@ -83,7 +83,7 @@ function uploadFile(data){
             console.log('data',data);
             //当前上传完成后移除li
             setTimeout(()=>{
-                // li.remove();
+                li.remove();
             },1000);
             taskProgressStatusElement.innerHTML = '上传完成';
             let img = new Image();
