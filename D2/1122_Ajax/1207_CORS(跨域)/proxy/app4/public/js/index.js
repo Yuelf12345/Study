@@ -124,6 +124,7 @@ loginBtnElement.onclick = function(){
             localStorage.setItem('authorization',this.getResponseHeader('authorization'))
         }
     });
-
+    //刷新页面
+    location.reload();
     // setTimeout(()=>{window.location.reload()},500)
 }

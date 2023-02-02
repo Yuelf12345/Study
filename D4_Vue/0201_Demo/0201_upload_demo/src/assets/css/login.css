@@ -1,0 +1,45 @@
+.container {
+    height: 500px;
+    background-image: linear-gradient(to right, #fbc2eb, #a6c1ee);
+}
+.login-wrapper {
+    background-color: #fff;
+    width: 300px;
+    height: 200px;
+    border-radius: 15px;
+    padding: 0 50px;
+    position: relative;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, -50%);
+}
+.header {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+.input-item {
+    display: block;
+    width: 80%;
+    margin-bottom: 20px;
+    border: 0;
+    padding: 10px;
+    border-bottom: 1px solid rgb(128, 125, 125);
+    font-size: 12px;
+    outline: none;
+}
+.input-item:placeholder {
+    text-transform: uppercase;
+}
+.btn {
+    display: block;
+    text-align: center;
+    padding: 6px 10px;
+    width: 20%;
+    margin-top: 40px;
+    margin-left: 35%;
+    border-radius: 10%;
+    border: 1px solid white;
+    background-image: linear-gradient(to right, #a6c1ee, #fbc2eb);
+    color: #fff;
+}
