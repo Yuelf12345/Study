@@ -19,7 +19,7 @@ let db;
 }()
 
 // let rs = db.query("insert into `photos` (`name`) values (`sdsd`)")
-// console.log("db",db);
+console.log("db",db);
 
 const server = new Koa();
 const router = new Router();

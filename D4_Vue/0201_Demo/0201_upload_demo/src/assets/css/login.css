@@ -7,11 +7,6 @@
     width: 300px;
     height: 200px;
     border-radius: 15px;
-    padding: 0 50px;
-    position: relative;
-    left: 50%;
-    top: 30%;
-    transform: translate(-50%, -50%);
 }
 .header {
     font-size: 18px;

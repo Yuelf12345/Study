@@ -125,6 +125,6 @@ loginBtnElement.onclick = function(){
         }
     });
     //刷新页面
-    location.reload();
+    // location.reload();
     // setTimeout(()=>{window.location.reload()},500)
 }
