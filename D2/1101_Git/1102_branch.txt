@@ -107,3 +107,4 @@
        git remote add (仓库名) 仓库地址
        git push -u  (仓库名)
 
+       git push -u  https://github.com/Yuelf12345/Study.git

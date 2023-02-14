@@ -8,7 +8,7 @@ const server = new Koa();
 //代理服务
 server.use(proxy('/api',{
     // 'http://localhost:9999/api/getPhotos
-    target:'http://localhost:7777',
+    target:'http://localhost:8081',
     // 'http://localhost:7777/api/getPhotos
     pathRewrite:{
     // 'http://localhost:7777/getPhotos
