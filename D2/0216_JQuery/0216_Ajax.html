@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax</title>
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+    <div id="div1"><h2>使用 jQuery AJAX 修改该文本</h2></div>
+    <button>获取外部内容</button>
+    <button>发送一个 HTTP POST 请求页面并获取返回内容</button>
+    <script>
+        $(function(){
+          $("button").eq(0).click(function(){
+            $("#div1").load("/D2/0216_JQuery/try/demo_test.txt",function(responseTxt,statusTxt,xhr){
+              if(statusTxt=="success")
+                alert("外部内容加载成功!");
+              if(statusTxt=="error")
+                alert("Error: "+xhr.status+": "+xhr.statusText);
+            });
+          });
+          $("button").eq(1).click(function(){
+                $.post("/D2/0216_JQuery/try/demo_test_post.php",{
+                    name:"菜鸟教程",
+                    url:"http://www.runoob.com"
+                },
+                function(data,status){
+                    alert("数据: \n" + data + "\n状态: " + status);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

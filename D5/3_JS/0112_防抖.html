@@ -30,20 +30,22 @@
         ipt.oninput=shake(isInput,1000);
 
 
-        let sr;
-        ipt2.oninput =  function (){
-            if(sr){
-                console.log('输入中',this.value);
+        {   
+            let sr;
+            ipt2.oninput =  function (){
+                if(sr){
+                    console.log('输入中',this.value);
+                }
             }
-        }
-        ipt2.compositionstart = function (){
-            sr = false;
-            console.log('开始');
+            ipt2.compositionstart = function (){
+                sr = false;
+                console.log('开始');
 
-        }
-        ipt2.compositionend = function (){
-            sr = true;
-            console.log('结束')
+            }
+            ipt2.compositionend = function (){
+                sr = true;
+                console.log('结束')
+            }
         }
 </script>
 </html>

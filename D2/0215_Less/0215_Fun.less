@@ -1,0 +1,15 @@
+div{
+    width: 80px;
+    height:30ps;
+    border: 1px solid black;
+    p{
+        @list: 10px, 20px, 30px, 40px;
+        // 返回列表中指定位置的值
+        @val: extract(@list, 2);
+        font-size:@val;
+        color:#F79F81;
+    }
+    a{
+        text-decoration-line: none;
+    }
+}
