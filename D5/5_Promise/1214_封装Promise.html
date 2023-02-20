@@ -19,6 +19,8 @@
             //2.then调用
             this.resolveFn = null;
             this.rejectFn = null;
+            this.resolveQueue = [];
+            this.rejectQueue = [];
 
             //1.三种状态返回，里面没有this,
             // handle(function(val){this.MyPromiseState = 'fulfilled',this.MyPromiseResult = val}.bind(this),

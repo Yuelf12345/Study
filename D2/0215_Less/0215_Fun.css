@@ -1,0 +1,12 @@
+div {
+  width: 80px;
+  height: 30ps;
+  border: 1px solid black;
+}
+div p {
+  font-size: 20px;
+  color: #F79F81;
+}
+div a {
+  text-decoration-line: none;
+}

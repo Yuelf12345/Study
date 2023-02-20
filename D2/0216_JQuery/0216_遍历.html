@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery遍历</title>
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <style>
+        div{
+            width: 300px;
+            height: 250px;
+            border: 1px solid black;
+            padding: 20px;
+            float: left;
+        }
+        ul{
+            width: 220px;
+            height: 100px;
+            border: 1px solid rgb(6, 214, 186);
+            padding: 20px;
+        }
+        li{
+            width: 150px;
+            height: 60px;
+            border: 1px solid rgb(214, 158, 6);
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        parent: 父元素 <br>
+        parents:所有父元素
+        parentsUntil:之间元素
+        <ul>
+            <li>
+                <span>子找父 后代1</span>
+            </li>
+        </ul>
+    </div>
+    <div class="dad">父找子
+        <ul>
+            <li>
+                <a href="">后代2</a>
+            </li>
+        </ul>
+    </div>
+    <div class="sib">
+        prev() prevAll() prevUntil()返回的是前面的同胞元素
+        <h1>1</h1>
+        <h2>2</h2>
+        <h3>3</h3>
+        <h4>4</h4>
+        <h5>5</h5>
+    </div>
+    <script>
+        $(function(){
+        // 查找父元素
+            $("span").parent().css({"border":"2px solid red"});
+            // $("span").parents().css({"border":"4px solid blue"});
+            $("span").parents("ul").css({"border":"6px solid yellow"});
+            // $("span").parentsUntil("div").css({"border":"2px solid red"});     之前元素
+        //查找子元素
+            $(".dad").children().css({"border":"2px solid red"});
+            $(".dad").find('li').css({"border":"6px solid yellow"});
+            $(".dad").find('*');
+        //查找同胞元素
+            $("h1").siblings().css({"border":"2px solid yellow"})
+            $("h3").next().css({"border":"2px solid blue"})
+            $("h3").nextUntil("h5").css({"border":"2px solid red"})
+
+        //过滤  fist last eq filter not
+            $("div h1").last().css("background-color","yellow");
+        });
+    </script>
+</body>
+</html>

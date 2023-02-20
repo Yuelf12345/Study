@@ -1,0 +1,77 @@
+// 导入其他 less文件
+@import "./001test.less";
+// 变量 @变量名：变量值
+    @fontSize: 10px;
+
+// 类似 function
+.backgroundColor(@height,@width,@color){
+    height: @height;
+    width: @width;
+    background-color: @color;
+}
+
+.box1{
+    .backgroundColor(100px,100px,pink);
+    // 标签嵌套
+    p{
+        color: ~"gray"; //转义
+        font-size: @fontSize * 2 ;  //  变量加减乘除
+    //  @fontSize: 20px; 先在自己内部查找，如果没有在像外查找
+    }
+}
+
+// 命名空间为了更好的组织css或者单纯的为了更好的封装，将一些变量或者混合模块打包起来，就可以定义一些属性集之后便于之后的重复使用
+.class1 {
+    .class2 {
+      .val(@param) {
+        font-size: @param;
+      }
+    }
+    .class3(@color){
+        color: @color
+    }
+  }
+
+.box2{
+    .backgroundColor(200px,200px,skyblue);
+
+    p {
+        .class1 > .class2 > .val(20px);
+        .class1 > .class3(green)
+      }
+}
+
+
+h1 {
+    //   引入h3 样式  h1,h3{}
+    &:extend(h3);
+    font-style: italic;
+  }
+  h3 {
+    background: rgb(175, 245, 175);
+  }
+
+//  mixin 混合 合并 + :逗号合并 +_ 无逗号
+  .p1{
+    color:rgb(210, 0, 0);
+    border+_: 1px solid ;
+  }
+  .p2{
+    .p1();
+    font-size: 20px;
+    border+_: black ;
+  }
+  .p3{
+    .p1;
+    font-weight: bolder;
+    border+_: black ;
+  }
+
+// 循环
+.cont(@count) when (@count > 0) {
+    .cont((@count - 1));
+    width: (25px * @count);
+  }
+  a {
+    .cont(3);
+  }

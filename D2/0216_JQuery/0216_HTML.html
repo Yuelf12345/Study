@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML</title>
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+    <p>名称: <input type="text" id="test" value="菜鸟教程"></p>
+    <button>显示html</button>
+    <button>显示值</button>
+    <button>修改值</button>
+    <p><a href="http://www.runoob.com" id="runoob">菜鸟教程</a></p>
+    <button>显示 href 属性的值</button>
+    <ui class="myul">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ui>
+    <button>添加列表</button>
+    <button>删除列表</button>
+    <script>
+        $(document).ready(function(){
+            $("button").eq(0).click(function(){ alert($("p").html());  });
+            $("button").eq(1).click(function(){ alert($("#test").val()); });
+
+            $("button").eq(2).click(function(){
+                $("#test").val(function(i,origText){
+                    return "旧文本: " + origText + " 新文本: Hello world! " + i; 
+                });
+            });
+
+            $("button").eq(3).click(function(){ alert($("#runoob").attr("href")); });
+            /**
+             *  var txt1="<p>文本-1。</p>";              // 使用 HTML 标签创建文本
+                var txt2=$("<p></p>").text("文本-2。");  // 使用 jQuery 创建文本
+                var txt3=document.createElement("p");
+                    txt3.innerHTML="文本-3。"; 
+            */
+            $("button").eq(4).click(function(){
+                var liNum = $(".myul li").length;
+                $(".myul").append(`<li>${++liNum}</li>`);
+                $(".myul").prepend(`<li>prepend</li>`);
+                $(".myul").before(`<li>前插入</li>`);
+            });
+            $("button").eq(5).click(function(){
+                console.log(1);
+                $(".myul >li").filter(function(index){
+                    return index == $(".myul li").length -1;
+                }).remove()
+                
+            });
+        });
+    </script>
+</body>
+</html>

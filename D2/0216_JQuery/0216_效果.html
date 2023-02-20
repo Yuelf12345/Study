@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery学习</title>
+    <style>
+    </style>
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+    <p>标签选择器</p>
+    <p id="pID">ID选择器</p>
+    <p class="pClass">类选择器</p>
+    <hr>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+    <hr>
+    <button>点击显示/隐藏</button>
+    <button>点击滑动</button>
+    <button>开始动画</button>
+    <button>停止动画</button>
+    <div id="div1" style="width:80px;height:80px;background-color:red;"></div><br>
+    <div id="div2" style="width:80px;height:80px;background-color:green;"></div><br>
+    <div id="div3" style="width:80px;height:80px;background-color:blue;"></div>
+
+
+    </div>
+    <script>
+        // DOM加载后执行  简写$(function){}
+        $(document).ready(function(){
+            $("p").click(function(){
+                $(this).text("标签点击")
+            })
+            $("#pID").click(function(){
+                $(this).text("ID点击")
+            })
+            $(".pClass").click(function(){
+                $(this).text("类点击")
+            });
+
+
+            $("li:even").css('color' , "red");
+            // $("li:even").css({'color':"red"});
+            // $("li:even").attr('style','color:red');
+
+
+            $("button").eq(0).click(function(){
+                $("#div1").fadeToggle();
+                $("#div2").fadeToggle("slow");
+                $("#div3").fadeToggle(3000);
+            });
+            $("button").eq(1).click(function(){
+                $("#div1").slideToggle();
+                $("#div2").slideToggle();
+                $("#div3").slideToggle();    
+            });
+            $("button").eq(2).click(function(){
+                var div=$("div");
+                div.animate({height:'150px',opacity:'0.4'},"slow");
+                div.animate({width:'150px',opacity:'0.8'},"slow");
+                div.animate({height:'80px',opacity:'0.4'},"slow");
+                div.animate({width:'80px',opacity:'0.8'},"slow");
+            });  
+            $("button").eq(3).click(function(){
+                var div=$("div");
+                div.stop()
+            });  
+        })
+    </script>
+</body>
+</html>
