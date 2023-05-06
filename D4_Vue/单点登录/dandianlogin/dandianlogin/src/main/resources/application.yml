@@ -1,0 +1,23 @@
+spring:
+  redis:
+    database: 0    #redis的默认数据库为0
+    host: 127.0.0.1  #链接redis的ip
+    port: 6379  #链接redis的端口号
+    password:   #链接redis的密码 默认为空
+    jedis:
+      pool:
+        max-total: 200    #链接redis的总数目
+        max-active: 100  #链接redis的最大
+        max-idle: 8      #最大的链接数量
+        min-idle: 5     #最小的链接数量
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    show-sql: true
+server:
+  port: 8888
+
+REDIS_KEY : USER_TOKEN

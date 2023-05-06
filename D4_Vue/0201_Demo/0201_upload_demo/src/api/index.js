@@ -9,13 +9,13 @@ axios.create({
     baseURL:
       process.env.NODE_ENV === "development" ? "/api" : "http://localhost:8081/"
   });
-axios.interceptors.request.use(config => {
-    // 设置 token
-    const token = store.state.token;
-    if (token) {
-        config.headers.authorization = "Bearer " + token;
-    }
-});
+// axios.interceptors.request.use(config => {
+//     // 设置 token
+//     const token = store.state.token;
+//     if (token) {
+//         config.headers.authorization = "Bearer " + token;
+//     }
+// });
 // 登录接口
 export  function fetchLogin({username , password}){
     console.log(username,password);

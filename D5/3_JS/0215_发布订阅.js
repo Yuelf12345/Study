@@ -53,3 +53,46 @@ function handleB(){
 function handleC(){
     console.log('handleC');
 }
+
+
+class fb{
+    constructor(){
+        this.dl = {
+
+        }
+    }
+
+    f(e,cb){
+        (this.dl[e] || (this.dl[e]= [])).push(cb)
+        console.log('添加后',this.dl);
+    }
+
+    m(e){
+        console.log('发布',this.dl);
+        this.dl[e].forEach(fn => {
+            fn()
+        });
+    }
+
+    d(e,cb){
+        if(!this.dl[e]) return
+        if(!cb){
+            this.dl[e] = undefined
+        }
+        this.dl[e] = this.dl[e].filter(v=> v !== cb)
+        console.log('删除后',this.dl);
+    }
+}
+
+
+const sub = new fb()
+function f1(){
+    console.log('我是f1');
+}
+function f2(){
+    console.log('我是f2');
+}
+sub.f('1',f1);
+sub.f('1',f2);
+sub.d('1',f1)
+sub.m('1')
