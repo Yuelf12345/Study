@@ -50,7 +50,7 @@
 #### 全局守卫
 -   beforeEach(to, from, next) 全局前置守卫，路由跳转前触发
 -   beforeResolve(to, from, next) 全局解析守卫 在所有组件内守卫和异步路由组件被解析之后触发
--   afterEach(to, from) 全局后置守卫，路由跳转完成后触发
+-   afterEach(to, from,next) 全局后置守卫，路由跳转完成后触发
 
 #### 路由独享守卫
 -   beforeEnter(to,from,next) 路由对象单个路由配置 ，单个路由进入前触发

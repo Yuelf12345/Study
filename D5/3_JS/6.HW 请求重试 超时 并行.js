@@ -19,13 +19,13 @@ limitTime('https://www.baidu.com/',0000).then(res=>console.log(res)).catch(err=>
 function limitRequest(urls,maxNum){
     return new Promise(()=>{
         let cnt = 0;
-        async function request(){
-            if(!urls.length) return;
-            await fetch(urls.shift()).finally(()=>{request()})
-        }
         while(cnt < maxNum){
             request();
             cnt ++;
+        }
+        function request(){
+            if(!urls.length) return;
+             fetch(urls.shift()).finally(cnt --)
         }
     })
 }

@@ -1,9 +1,11 @@
 // Shake throttle
 function shake(fn,time){
-    let timer;
+    let timer
     return function(){
-        clearTimeout(timer);
-        timer = setTimeout(()=>{fn.call(this)},time)
+        clearTimeout(timer)
+        timer = setTimeout(()=>{
+            fn()
+        },time)
     }
 }
 

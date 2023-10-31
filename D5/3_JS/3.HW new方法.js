@@ -9,9 +9,9 @@ console.log(p1)  // { name: 'O.O', age: 20 }
 
 
 function myNew(Con,...args){
-   let obj = {}
-   obj.__proto__ = Con.prototype
-   let res  = Con.call(obj,...args)
+   let obj = {};
+   obj.__proto__ = Con.prototype;
+   let res  = Con.call(obj,...args);
    return res instanceof Object ? res : obj
 }
 let p2 = myNew(Person, '-.-', 100)

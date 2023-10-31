@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            word-wrap: break-word;
+        }
+        .content0{
+            display: flex;
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            .con0{
+                margin: auto;
+                width: 80px;
+                height: 80px;
+                background-color: rgb(79, 191, 255);
+            }
+        }
+        .content1{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            .con1{
+                width: 80px;
+                height: 80px;
+                background-color: antiquewhite;
+            }
+        }
+        .content2{
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            .con2{
+                position: relative;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%,-50%);
+                width: 80px;
+                height: 80px;
+                background-color: rgb(246, 157, 39);
+            }
+        }
+        .content3{
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+            .con3{
+                display: inline-block;
+                width: 80px;
+                height: 80px;
+                background-color: rgb(167, 39, 246);
+            }
+        }
+        .content4{
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            display: grid;
+            align-items: center;
+            justify-content: center;
+            .con4{
+                width: 80px;
+                height: 80px;
+                background-color: rgb(246, 39, 94);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="content0">
+        <div class="con0">flex+margein</div>
+    </div>
+    <div class="content1">
+        <div class="con1">flex居中</div>
+    </div>
+    <div class="content2">
+        <div class="con2">position+transform</div>
+    </div>
+    <div class="content3">
+        <div class="con3">table-cell+inline-block</div>
+    </div>
+    <div class="content4">
+        <div class="con4">grid居中</div>
+    </div>
+</body>
+</html>

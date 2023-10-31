@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            min-height: 150px;
+        }
+        .container0{
+           display: flex;
+           width: 100%;
+            .main{
+                flex: 1;
+                background-color: aqua;
+            }
+            .left{
+                width: 150px;
+                background-color: antiquewhite;
+            }
+            .right{
+                width:100px;
+                background-color: cadetblue;
+            }
+        }
+        .container1{
+            margin: 0 100px 0 150px;
+            .main,.left,.right{
+                float: left;
+            }
+            .main{
+                width: 100%;
+                background-color: aqua;
+            }
+            .left{
+                position: relative;
+                margin-left: -100%;
+                left: -150px;
+                width: 150px;
+                background-color: antiquewhite;
+            }
+            .right{
+                position: relative;
+                margin-left: -100px;
+                left: 100px;
+                width:100px;
+                background-color: cadetblue;
+            }
+        }
+        .content{
+            .container2,.left,.right{
+                float: left;
+            }
+            .container2{
+                width: 100%;
+                background-color: aqua;
+                .main{
+                    margin: 0 100px 0 150px;
+                }
+            }
+            .left{
+                margin-left: -100%;
+                width: 150px;
+                background-color: antiquewhite;
+            }
+            .right{
+                margin-left: -100px;
+                width:100px;
+                background-color: cadetblue;
+            }
+        }
+        .container3{
+           display: table;
+           width: 100%;
+           .main,.left,.right{
+                display: table-cell;
+            }
+            .main{
+                background-color: aqua;
+            }
+            .left{
+                width:150px;
+                background-color: antiquewhite;
+            }
+            .right{
+                width:100px;
+                background-color: cadetblue;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container0">
+        <div class="left">left</div>
+        <div class="main">flex布局</div>
+        <div class="right">right</div>
+    </div>
+    <br>
+    <div class="container1">
+        <div class="main">圣杯布局 magin float margin-left position left </div>
+        <div class="left">left</div>
+        <div class="right">right</div>
+    </div>
+    <br>
+    <div class="content">
+        <div class="container2">
+            <div class="main">双飞翼布局</div>
+        </div>
+        <div class="left">left</div>
+        <div class="right">right</div>
+    </div>
+    <br>
+    <div class="container3">
+        <div class="left">left</div>
+        <div class="main">table布局</div>
+        <div class="right">right</div>
+    </div>
+</body>
+</html>

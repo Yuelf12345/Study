@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const PADDING = "padding"
+        const FULFILLED = "fulfilled"
+        const REJECTED = "rejected"
+        class MPromise {
+            #State = PADDING
+            #Value = undefined
+
+            #handlers = []
+            constructor(executor) {
+                const reslove = (value) => {
+                    this.#changeState(FULFILLED, value)
+                }
+                const reject = (value) => {
+                    this.#changeState(REJECTED, value)
+                }
+                try {
+                    executor(reslove, reject)
+                } catch (error) {
+                    reject(error)
+                }
+            }
+            #changeState(state, value) {
+                if (this.#State !== PADDING) return;
+                this.#State = state
+                this.#Value = value
+                this.#run()
+            }
+            #isPromiseLike(value) {
+                return false;
+            }
+            #runMicroTask(fn) {
+                setTimeout(fn, 0)
+            }
+            #runOne(cb, reslove, reject) {
+                this.#runMicroTask(() => {
+                    if (typeof cb === "function") {
+                        try {
+                            const data = cb(this.#Value);
+                            if (this.#isPromiseLike(data)) {
+                                data.then(reslove, reject)
+                            } else {
+                                reslove(data);
+                            }
+                        } catch (err) {
+                            reject(err)     //运行报错
+                        }
+                    } else {
+                        const select = this.#State === FULFILLED ? reslove : reject
+                        select(this.#Value);    //穿透
+                        return;
+                    }
+                })
+            }
+            #run() {
+                if (this.#State === PADDING) return;
+                while (this.#handlers.length) {
+                    const { onResloved, onRejected, reslove, reject } = this.#handlers.shift();
+                    if (this.#State === FULFILLED) {
+                        this.#runOne(onResloved, reslove, reject)
+                    } else {
+                        this.#runOne(onRejected, reslove, reject)
+                    }
+                }
+            }
+            then(onResloved, onRejected) {
+                return new MPromise((reslove, reject) => {
+                    this.#handlers.push({
+                        onResloved,
+                        onRejected,
+                        reslove,
+                        reject
+                    })
+                    this.#run()
+                })
+            }
+        }
+        const p = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve("p 成功")
+            }, 100)
+        })
+        p.then(res => {
+            console.log(res);
+        })
+        p.then(res => {
+            console.log(res);
+        })
+        const y = new MPromise((resolve, reject) => {
+            setTimeout(() => {
+                resolve("y 成功")
+            }, 100)
+        })
+        y.then(res => {
+            console.log(res);
+        })
+        y.then(res => {
+            console.log(res);
+        })
+        console.log(p);
+        console.log(y);
+    </script>
+</body>
+
+</html>

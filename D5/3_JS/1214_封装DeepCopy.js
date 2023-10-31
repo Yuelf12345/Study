@@ -12,7 +12,7 @@ function deepCopy(obj){
         newObj = {}
         for(let key in obj){
             if(obj.hasOwnProperty(key)){
-                if(typeof key === 'object'){
+                if(typeof obj[key] === 'object'){
                     newObj = deepCopy(obj[key])
                 }else{
                     newObj[key] = obj[key]

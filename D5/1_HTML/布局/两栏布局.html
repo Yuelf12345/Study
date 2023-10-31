@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container1{
+            .left1{
+                float: left;
+                width:100px;
+                min-height: 100px;
+                background-color: aquamarine;
+            }
+            .right1{
+                overflow: hidden;
+                min-height: 100px;  
+                background-color: bisque;
+            }
+        }
+        .container1:after{
+            content: "";
+            height: 0;
+            line-height: 0;
+            display: block;
+            visibility: hidden;
+            clear: both;
+        }
+        .container2{
+            .left2{
+                float: left;
+                width:100px;
+                min-height: 100px;
+                background-color: aquamarine;
+            }
+            .right2{
+               margin-left: 100px;
+                min-height: 100px;  
+                background-color: bisque;
+            }
+        }
+        .container3{
+            display: flex;
+            .left3{
+                width:100px;
+                min-height: 100px;
+                background-color: aquamarine;
+            }
+            .right3{
+                flex-grow: 1;
+                min-height: 100px;  
+                background-color: bisque;
+            }
+        }
+        .container4{
+            display: grid;
+            grid-template-columns:100px 1fr;
+            .left4{
+                min-height: 100px;
+                background-color: aquamarine;
+            }
+            .right4{
+                min-height: 100px;  
+                background-color: bisque;
+            }
+        }
+        .container5{
+            position: relative;
+            .left5{
+                position: absolute;
+                width: 100px;
+                min-height: 100px;
+                background-color: aquamarine;
+            }
+            .right5{
+                position: absolute;
+                left: 100px;
+                width: 100%;
+                min-height: 100px;  
+                background-color: bisque;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container1">
+        <div class="left1">float</div>
+        <div class="right1">BFC</div>
+    </div>
+    <br>
+    <div class="container2">
+        <div class="left2">float</div>
+        <div class="right2">margin-left</div>
+    </div>
+    <br>
+    <div class="container3">
+        <div class="left3">flex</div>
+        <div class="right3">flex-grow</div>
+    </div>
+    <br>
+    <div class="container4">
+        <div class="left4">grid</div>
+        <div class="right4">grid-template-columns</div>
+    </div>
+    <br>
+    <div class="container5">
+        <div class="left5">position</div>
+        <div class="right5">absolute</div>
+    </div>
+</body>
+</html>

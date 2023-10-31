@@ -45,7 +45,8 @@ export default {
     },
     handleByQuery(id){
         this.$router.push({
-            name:"GoodsDetail",
+            // name:"GoodsDetail",
+            path:   `/detail/:id`,
             query:{
                 id
             }
